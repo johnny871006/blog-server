@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,17 +19,33 @@ public class User {
     @Id
     @GeneratedValue
     private Long id;
+
+    @Column(name = "nick_name")
     private String nickName;
+
+    @Column(name = "user_name")
     private String userName;
-    private String password;
+
+    @Column(name = "email")
     private String email;
+
+    @Column(name = "password")
+    private String password;
+
+    @Column(name = "avatar")
     private String avatar;
+
+    @Column(name = "type")
     private Integer type;
 
+    @CreatedDate
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "create_time")
     private Date createTime;
 
+    @LastModifiedDate
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "update_time")
     private Date updateTime;
 
     @OneToMany(mappedBy = "user")

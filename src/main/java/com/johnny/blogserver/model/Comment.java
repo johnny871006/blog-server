@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedDate;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,12 +18,22 @@ public class Comment {
     @Id
     @GeneratedValue
     private Long id;
+
+    @Column(name = "nick_name")
     private String nickName;
+
+    @Column(name = "email")
     private String email;
+
+    @Column(name = "content")
     private String content;
+
+    @Column(name = "avatar")
     private String avatar;
 
+    @CreatedDate
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "create_time")
     private Date createTime;
 
     @ManyToOne

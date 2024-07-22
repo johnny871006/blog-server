@@ -16,6 +16,8 @@ public class Type {
     @Id
     @GeneratedValue
     private Long id;
+
+    @Column(name = "name")
     private String name;
 
     //mappedBy : 哪個欄位維護
