@@ -1,0 +1,123 @@
+
+body{
+    background: url("../images/leaves.png");
+}
+
+/*padded*/
+.padding-tb{
+    padding-top: 0.2em !important;
+    padding-bottom: 0.2em !important;
+}
+
+.padding-tb-mini{
+    padding-top: 1em !important;
+    padding-bottom: 1em !important;
+}
+
+.padding-tb-mid{
+    padding-top: 3em !important;
+    padding-bottom: 3em !important;
+}
+
+.padding-tb-massive{
+    padding-top: 5em !important;
+    padding-bottom: 5em !important;
+}
+
+.m-padded-lr{
+    padding-left: 4em !important;
+    padding-right: 4em !important;
+}
+
+/*margin*/
+.margin-tb{
+    margin-top: 0.2em !important;
+    margin-bottom: 0.2em !important;
+}
+
+/*position*/
+.m-top-right{
+    position:absolute;
+    top: 0;
+    right: 0;
+}
+.m-margin-bottom{
+    margin-bottom: 0.5em !important;
+}
+
+.m-fixed{
+    position: fixed !important;
+    z-index: 10 !important;
+}
+.m-right-bottom{
+    bottom: 0 !important;
+    right:0 !important;
+}
+
+/*-----shadow-----*/
+.m-shadow{
+    -webkit-box-shadow: 0 4px 8px rgba(0,0,0,0.5) !important;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5) !important;
+}
+
+/*text*/
+.m-text{
+    font-weight: 300 !important;
+    letter-spacing: 1px !important;
+    line-height: 1.8 !important;
+}
+.text-thin {
+    font-weight: 300 !important;
+}
+
+.text-spaced{
+    letter-spacing: 1px !important;
+}
+
+.text-lined{
+    line-height: 1.8 !important;
+}
+
+.opacity-mini{
+    opacity: 1 !important;
+}
+
+/*display*/
+.inline-block{
+    display: inline-block !important;
+}
+
+/*container*/
+.m-container{
+    max-width: 72em !important;
+    margin: auto !important;
+}
+.m-container-small{
+    max-width: 60em !important;
+    margin: auto !important;
+}
+
+/*color*/
+.m-black{
+    color: #333;
+}
+
+.m-mobile-show{
+    display: none !important;
+}
+
+@media screen and (max-width:768px){
+    .m-mobile-hide{
+        display: none !important;
+    }
+    .m-mobile-show{
+        display: block !important;
+    }
+    .m-padded-lr{
+        padding-left: 0em !important;
+        padding-right: 0em !important;
+    }
+    .m-mobile-wide{
+        width: 100%;
+    }
+}

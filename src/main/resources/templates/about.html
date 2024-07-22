@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="_fragments :: head(~{::title})">
+    <title >關於我</title>
+</head>
+<body>
+
+<!--    導覽列-->
+<nav th:replace="_fragments :: menu(5)">
+</nav>
+
+<!--中間內容-->
+<div class="m-container padding-tb-massive">
+    <div class="ui container">
+        <div class="ui stackable grid">
+            <div class="eleven wide column">
+                <div class="ui segment">
+                    <img src="https://picsum.photos/800/600" alt="" class="ui rounded image">
+                </div>
+            </div>
+            <div class="five wide column">
+                <div class="ui top attached segment">
+                    <div class="ui header">關於我</div>
+                </div>
+                <div class="ui attached segment">
+                    <p class="text-thin">Lorem ipsum dolor sit amet.</p>
+                    <p class="text-thin">Lorem ipsum dolor sit amet.</p>
+                </div>
+                <div class="ui attached segment">
+                    <div class="ui orange basic left pointing label">佛教</div>
+                    <div class="ui orange basic left pointing label">基督教</div>
+                    <div class="ui orange basic left pointing label">天主教</div>
+                </div>
+                <div class="ui attached segment">
+                    <div class="ui teal basic left pointing label margin-tb">Java</div>
+                    <div class="ui teal basic left pointing label margin-tb">JavaScript</div>
+                    <div class="ui teal basic left pointing label margin-tb">Python</div>
+                    <div class="ui teal basic left pointing label margin-tb">React</div>
+                    <div class="ui teal basic left pointing label margin-tb">Node</div>
+                    <div class="ui teal basic left pointing label margin-tb">MySQL</div>
+                    <div class="ui teal basic left pointing label margin-tb">...</div>
+                </div>
+                <div class="ui attached bottom segment">
+                    <a href="#" class="ui circular icon button"><i class="github icon"></i></a>
+                    <a href="#" class="ui phone circular icon button" data-content="091234567" data-position="bottom center"><i class="whatsapp icon"></i></a>
+                    <a href="#" class="ui twitter circular icon button" data-content="johnny" data-position="bottom center" ><i class="twitter icon"></i></a>
+                    <a href="#" class="ui youtube circular icon button" data-content="johnny" data-position="bottom center"><i class="youtube icon"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--底部footer-->
+<footer th:replace="_fragments :: footer">
+</footer>
+
+<th:block th:replace="_fragments :: script">
+</th:block>
+
+<script>
+    $('.menu.toggle').click(() => {
+        $('.m-item').toggleClass('m-mobile-hide');
+    })
+
+    $('.phone').popup();
+    $('.twitter').popup();
+    $('.youtube').popup();
+</script>
+</body>
+</html>

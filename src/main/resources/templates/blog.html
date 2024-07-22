@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="_fragments :: head(~{::title})">
+    <title>Blog</title>
+</head>
+<body>
+
+<!--    導覽列-->
+<nav th:replace="_fragments :: menu(1)">
+</nav>
+
+<!--中間內容-->
+<div class="m-container-small padding-tb-massive">
+    <div class="ui container ">
+        <!--頭部區域-->
+        <div class="ui top attached segment">
+            <div class="ui horizontal link list">
+                <div class="item">
+                    <img src="https://picsum.photos/800/450" alt="" class="ui image avatar">
+                    <div class="content">
+                        <a class="header">God</a>
+                    </div>
+                </div>
+                <div class="item">
+                    <i class="calendar icon"></i>2024-07-17
+                </div>
+                <div class="item">
+                    <i class="eye icon"></i> 666
+                </div>
+            </div>
+        </div>
+
+        <!--圖片區域-->
+        <div class="ui attached segment">
+            <img src="https://picsum.photos/800/450" alt="" class="ui fluid rounded image">
+        </div>
+
+        <!--內容區域-->
+        <div class="ui attached padded segment">
+            <div class="ui right aligned basic segment">
+                <div class="ui orange basic label">Cool</div>
+            </div>
+
+            <h2 class="ui center aligned header">文章</h2>
+            <br>
+
+            <div id="content" class="typo typo-selection m-padded-lr">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia, suscipit.</p>
+                <h2>1</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, odio.</p>
+                <h2>2</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, odio.</p>
+                <h2>3</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, odio.</p>
+                <h2>4</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, odio.</p>
+                <h2>5</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, odio.</p>
+                <h2>總結</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, odio.</p>
+            </div>
+
+            <!--標籤-->
+            <div class="m-padded-lr padding-tb-mini">
+                <div class="ui basic teal left pointing label">方法論</div>
+            </div>
+
+            <!--點讚-->
+            <div class="ui center aligned basic segment">
+                <button class="ui good basic orange circular button">按讚</button>
+                <label id="good">0</label>
+            </div>
+        </div>
+
+        <!--作者訊息-->
+        <div class="ui attached positive message">
+            <div class="ui middle aligned grid">
+                <div class="eleven wide column">
+                    <ul class="list">
+                        <li>作者: 神秘人</li>
+                        <li>發布時間: 神秘時間</li>
+                        <li>版權聲明: 神秘版權</li>
+                    </ul>
+                </div>
+                <div class="five wide column">
+                    <img src="../static/images/OIP.jpg" alt="" class="ui rounded bordered image" style="width: 110px">
+                </div>
+            </div>
+        </div>
+
+        <!--留言區域-->
+        <div id="comment-container" class="ui bottom attached segment">
+            <div class="ui teal segment">
+                <div class="ui comments">
+                    <h3 class="ui dividing header">Comments</h3>
+                    <div class="comment">
+                        <a class="avatar">
+                            <img src="https://picsum.photos/800/450">
+                        </a>
+                        <div class="content">
+                            <a class="author">Matt</a>
+                            <div class="metadata">
+                                <span class="date">Today at 5:42PM</span>
+                            </div>
+                            <div class="text">
+                                How artistic!
+                            </div>
+                            <div class="actions">
+                                <a class="reply">Reply</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comment">
+                        <a class="avatar">
+                            <img src="https://picsum.photos/800/450">
+                        </a>
+                        <div class="content">
+                            <a class="author">Elliot Fu</a>
+                            <div class="metadata">
+                                <span class="date">Yesterday at 12:30AM</span>
+                            </div>
+                            <div class="text">
+                                <p>This has been very useful for my research. Thanks as well!</p>
+                            </div>
+                            <div class="actions">
+                                <a class="reply">Reply</a>
+                            </div>
+                        </div>
+                        <div class="comments">
+                            <div class="comment">
+                                <a class="avatar">
+                                    <img src="https://picsum.photos/800/450">
+                                </a>
+                                <div class="content">
+                                    <a class="author">Jenny Hess</a>
+                                    <div class="metadata">
+                                        <span class="date">Just now</span>
+                                    </div>
+                                    <div class="text">
+                                        Elliot you are always so right :)
+                                    </div>
+                                    <div class="actions">
+                                        <a class="reply">Reply</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comment">
+                        <a class="avatar">
+                            <img src="https://picsum.photos/800/450">
+                        </a>
+                        <div class="content">
+                            <a class="author">Joe Henderson</a>
+                            <div class="metadata">
+                                <span class="date">5 days ago</span>
+                            </div>
+                            <div class="text">
+                                Dude, this is awesome. Thanks so much
+                            </div>
+                            <div class="actions">
+                                <a class="reply">Reply</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ui form">
+                <div class="field">
+                    <textarea name="content" placeholder="請輸入留言訊息..."></textarea>
+                </div>
+                <div class="fields">
+                    <div class="field m-mobile-wide m-margin-bottom">
+                        <div class="ui left icon input">
+                            <i class="user icon"></i>
+                            <input type="text" name="nickname" placeholder="姓名">
+                        </div>
+                    </div>
+                    <div class="field m-mobile-wide m-margin-bottom">
+                        <div class="ui left icon input">
+                            <i class="mail icon"></i>
+                            <input type="text" name="email" placeholder="電子信箱">
+                        </div>
+                    </div>
+                    <div class="field m-mobile-wide m-margin-bottom">
+                        <button class="ui teal button m-mobile-wide">
+                            <i class="edit icon"></i>
+                            留言
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="m-fixed m-right-bottom m-padded-lr">
+    <div class="ui vertical icon buttons">
+        <!--        <button type="button" class="ui toc teal button">目錄</button>-->
+        <a href="#comment-container" type="button" class="ui teal button">留言</a>
+        <button class="ui icon line button" data-content="LineID:johnny" data-position="left center"><i
+                class="linechat icon"></i></button>
+        <a href="#" class="ui icon button"><i class="chevron up icon"></i></a>
+    </div>
+</div>
+
+<!--<div class="ui toc-container flowing popup transition hidden">-->
+<!--    生成的目錄-->
+<!--</div>-->
+
+
+<!--底部footer-->
+<footer th:replace="_fragments :: footer">
+</footer>
+
+<th:block th:replace="_fragments :: script">
+</th:block>
+
+<script>
+    $('.menu.toggle').click(() => {
+        $('.m-item').toggleClass('m-mobile-hide');
+    })
+
+    $('.toc.button').popup({
+        popup: $('.toc-container.popup'),
+        on: 'click',
+        position: 'left center'
+    })
+
+    $('.line').popup();
+
+    let total = 0;
+    $('.good').click(() => {
+        document.getElementById('good').innerHTML = ++total;
+    })
+</script>
+</body>
+</html>
