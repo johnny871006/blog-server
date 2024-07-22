@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="admin/_fragments :: head(~{::title})">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog管理登入</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css">
+    <link rel="stylesheet" href="../../static/css/styles.css">
+</head>
+<body>
+
+<br>
+<br>
+<br>
+    <div class="m-container-small padding-tb-massive" style="max-width: 30em !important;">
+        <div class="ui container">
+            <div class="ui middle aligned center aligned grid">
+                <div class="column">
+                    <h2 class="ui teal image header">
+<!--                        <img src="assets/images/logo.png" class="image">-->
+                        <div class="content">
+                            管理後台登入
+                        </div>
+                    </h2>
+                    <form class="ui large form" action="#">
+                        <div class="ui segment">
+                            <div class="field">
+                                <div class="ui left icon input">
+                                    <i class="user icon"></i>
+                                    <input type="text" name="userName" placeholder="使用者名稱">
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui left icon input">
+                                    <i class="lock icon"></i>
+                                    <input type="password" name="password" placeholder="密碼">
+                                </div>
+                            </div>
+                            <div class="ui fluid large teal submit button">登入</div>
+                        </div>
+
+                        <div class="ui error message"></div>
+
+                    </form>
+
+<!--                    <div class="ui message">-->
+<!--                        New to us? <a href="#">Sign Up</a>-->
+<!--                    </div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<th:block th:fragment="script">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.js"></script>
+</th:block>
+
+</body>
+</html>
