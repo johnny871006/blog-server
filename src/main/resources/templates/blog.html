@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head th:replace="_fragments :: head(~{::title})">
-    <title>Blog</title>
+    <title>文章詳情</title>
 </head>
 <body>
 
@@ -83,7 +83,7 @@
                     </ul>
                 </div>
                 <div class="five wide column">
-                    <img src="../static/images/OIP.jpg" alt="" class="ui rounded bordered image" style="width: 110px">
+                    <img src="../static/images/OIP.jpg" th:src="@{/images/OIP.jpg}" alt="" class="ui rounded bordered image" style="width: 110px">
                 </div>
             </div>
         </div>
