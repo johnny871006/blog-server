@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css">
     <link rel="stylesheet" href="./css/typo.css" th:href="@{/css/type.css}">
     <link rel="stylesheet" href="./css/animate.css" th:href="@{/css/animate.css}">
+    <link rel="stylesheet" href="../static/lib/editormd/css/editormd.min.css" th:href="@{/lib/editormd/css/editormd.min.css}">
     <link rel="stylesheet" href="../static/css/styles.css" th:href="@{/css/styles.css}">
 </head>
 <body>
@@ -27,7 +28,7 @@
                     </div>
                     <i class="dropdown icon"></i>
                     <div class="menu">
-                        <a href="#" class="item">登出</a>
+                        <a href="#" th:href="@{/admin/logout}" class="item">登出</a>
                     </div>
                 </div>
             </div>
@@ -77,6 +78,7 @@
 <th:block th:fragment="script">
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.js"></script>
+    <script src="../static/lib/editormd/editormd.min.js"></script>
 </th:block>
 
 </body>

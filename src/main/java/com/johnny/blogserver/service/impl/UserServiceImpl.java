@@ -1,15 +1,23 @@
 package com.johnny.blogserver.service.impl;
 
+import com.johnny.blogserver.dao.UserRepository;
 import com.johnny.blogserver.model.User;
 import com.johnny.blogserver.service.UserService;
-import org.springframework.stereotype.Component;
+import com.johnny.blogserver.util.MD5Util;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public class UserServiceImpl implements UserService {
 
-    @Override
-    public User checkUser(String username, String password) {
+    @Autowired
+    private UserRepository userRepository;
 
-        return null;
+    @Override
+    public User checkUser(String userName, String password) {
+
+        User user = userRepository.findByUserNameAndPassword(userName, MD5Util.code(password));
+
+        return user;
     }
 }

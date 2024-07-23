@@ -4,5 +4,5 @@ import com.johnny.blogserver.model.User;
 
 public interface UserService {
 
-    User checkUser(String username, String password);
+    User checkUser(String userName, String password);
 }

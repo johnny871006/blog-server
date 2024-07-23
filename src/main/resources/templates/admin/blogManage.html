@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head th:replace="_fragments :: head(~{::title})">
+<head th:replace="admin/_fragments :: head(~{::title})">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog管理</title>
@@ -10,7 +10,7 @@
 <body>
 
 <!--導覽列-->
-<nav class="ui inverted attached segment padding-tb m-shadow">
+<nav th:replace="admin/_fragments :: menu(1)" class="ui inverted attached segment padding-tb m-shadow">
     <div class="ui container">
         <div class="ui inverted secondary stackable menu">
             <h1 class="ui teal header item">管理後臺</h1>
@@ -117,11 +117,14 @@
 </div>
 
 <!--底部footer-->
-<footer th:replace="_fragments :: footer">
+<footer th:replace="admin/_fragments :: footer">
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.6/dist/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.js"></script>
+<th:block th:fragment="script">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.js"></script>
+    <script src="../static/lib/editormd/editormd.min.js"></script>
+</th:block>
 
 <script>
     $('.menu.toggle').click(() => {
