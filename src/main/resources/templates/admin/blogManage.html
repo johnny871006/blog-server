@@ -49,19 +49,23 @@
 <!--中間內容-->
 <div class="m-container padding-tb-massive">
     <div class="ui container">
-        <form action="#" method="POST" class="ui segment form">
+        <div class="ui second segment form">
+            <!--            因有三個查詢條件，不能用type與tag的方式上下頁，所以新增一個隱藏的input方式傳遞篩選值-->
+            <input type="hidden" name="page">
             <div class="inline fields">
                 <div class="field">
                     <input type="text" name="title" placeholder="標題">
                 </div>
                 <div class="field">
                     <div class="ui selection dropdown">
-                        <input type="hidden" name="type">
+                        <input type="hidden" name="typeId">
                         <i class="dropdown icon"></i>
                         <div class="default text">分類</div>
                         <div class="menu">
-                            <div class="item" data-value="1">佛教</div>
+                            <div th:each="type:${types}" class="item" data-value="1" th:data-value="${type.id}" th:text="${type.name}">佛教</div>
+                            <!--/*-->
                             <div class="item" data-value="2">神教</div>
+                            <!--*/-->
                         </div>
                     </div>
                 </div>
@@ -72,13 +76,15 @@
                     </div>
                 </div>
                 <div class="field">
-                    <button class="ui mini teal basic button"><i class="search icon"></i>搜尋</button>
+                    <button type="button" id="search-btn" class="ui mini teal basic button"><i class="search icon"></i>搜尋
+                    </button>
                 </div>
             </div>
-        </form>
+        </div>
 
-        <table class="ui celled center aligned table">
-            <thead>
+        <div id="table-container">
+            <table th:fragment="blogList" class="ui celled center aligned compact teal table">
+                <thead>
                 <tr>
                     <th></th>
                     <th>標題</th>
@@ -87,32 +93,37 @@
                     <th>更新時間</th>
                     <th>操作</th>
                 </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>1</td>
-                <td>Java</td>
-                <td>code</td>
-                <td>Yes</td>
-                <td>2024-07-18 16:30</td>
-                <td>
-                    <a href="#" class="ui mini teal basic button">編輯</a>
-                    <a href="#" class="ui mini red basic button">刪除</a>
-                </td>
-            </tr>
-            </tbody>
-            <tfoot>
+                </thead>
+                <tbody>
+                <tr th:each="blog,iterStat : ${page.content}">
+                    <td th:text="${iterStat.count}">1</td>
+                    <td th:text="${blog.title}">Java</td>
+                    <td th:text="${blog.type.name}">code</td>
+                    <td th:text="${blog.recommend} ? '是' : '否'">Yes</td>
+                    <td th:text="${blog.updateTime}">2024-07-18 16:30</td>
+                    <td>
+                        <a href="#" th:href="@{/admin/blogManage/{id}/input(id=${blog.id})}" class="ui mini teal basic button">編輯</a>
+                        <a href="#" th:href="@{/admin/blogManage/{id}/delete(id=${blog.id})}" class="ui mini red basic button">刪除</a>
+                    </td>
+                </tr>
+                </tbody>
+                <tfoot>
                 <tr>
                     <th colspan="6">
-                        <div class="ui mini floated pagination menu">
-                            <a class="item">上一頁</a>
-                            <a class="item">下一頁</a>
+                        <div class="ui mini floated pagination menu" th:if="${page.totalPages}>1">
+                            <!--                            因有三個查詢條件，不能用type與tag的方式上下頁-->
+                            <a onclick="page(this)" th:attr="data-page=${page.number}-1" class="item"
+                               th:unless="${page.first}">上一頁</a>
+                            <a onclick="page(this)" th:attr="data-page=${page.number}+1" class="item"
+                               th:unless="${page.last}">下一頁</a>
                         </div>
                         <a href="#" class="ui mini right floated teal basic button">新增</a>
                     </th>
                 </tr>
-            </tfoot>
-        </table>
+                </tfoot>
+            </table>
+        </div>
+
     </div>
 </div>
 
@@ -120,20 +131,38 @@
 <footer th:replace="admin/_fragments :: footer">
 </footer>
 
-<th:block th:fragment="script">
+<th:block th:replace="admin/_fragments :: script">
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.js"></script>
-    <script src="../static/lib/editormd/editormd.min.js"></script>
 </th:block>
 
 <script>
     $('.menu.toggle').click(() => {
         $('.m-item').toggleClass('m-mobile-hide');
-    })
+    });
 
     $('.ui.dropdown').dropdown({
         on: 'hover'
     });
+
+    //賦值查詢條件，上下頁
+    function page(obj) {
+        $("[name='page']").val($(obj).data("page"));
+        loadData();
+    }
+
+    $("#search-btn").click(function () {
+        loadData();
+    });
+
+    function loadData() {
+        $("#table-container").load(/*[[@{/admin/blogs/search}]]*/"/admin/blogManage/search", {
+            title: $("[name='title']").val(),
+            typeId: $("[name='typeId']").val(),
+            recommend: $("[name='recommend']").prop('checked'),
+            page: $("[name='page']").val()
+        });
+    }
 </script>
 </body>
 </html>
