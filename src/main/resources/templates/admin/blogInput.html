@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="admin/_fragments :: head(~{::title})">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog管理</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css">
-    <link rel="stylesheet" href="../static/lib/editormd/css/editormd.min.css">
-    <link rel="stylesheet" href="../../static/css/styles.css">
+    <link rel="stylesheet" href="../static/lib/editormd/css/editormd.min.css" th:src="@{lib/editormd/css/editormd.min.css}">
+    <link rel="stylesheet" href="../static/css/styles.css" th:href="@{/css/styles.css}">
 </head>
 <body>
 
@@ -21,7 +21,7 @@
             <div class="right m-item m-mobile-hide menu">
                 <div class="ui dropdown item">
                     <div class="text">
-                        <img class="ui avatar image" src="https://picsum.photos/100/100">
+                        <img class="ui avatar image" src="https://picsum.photos/100/100" alt="圖">
                         Johnny
                     </div>
                     <i class="dropdown icon"></i>
@@ -50,7 +50,8 @@
 <!--中間內容-->
 <div class="m-container padding-tb-massive">
     <div class="ui container">
-        <form action="#" method="POST" class="ui form">
+        <form id="blog-form" action="#" th:action="@{/admin/blogManage}" method="POST" class="ui form">
+            <input type="hidden" name="published">
             <div class=" required field">
                 <div class="ui left labeled input">
                     <div class="ui selection compact teal basic label dropdown">
@@ -67,33 +68,23 @@
                 </div>
             </div>
 
-            <div class="field">
+            <div class="required field">
                 <div id="md-content" style="z-index: 1 !important;">
-                    <textarea name="content" placeholder="內容" >
-<!--                        [TOC]-->
-
-<!--#### Disabled options-->
-
-<!-- - TeX (Based on KaTeX);-->
-<!-- - Emoji;-->
-<!-- - Task lists;-->
-<!-- - HTML tags decode;-->
-<!-- - Flowchart and Sequence Diagram;-->
-                    </textarea>
+                    <textarea name="content" placeholder="內容" ></textarea>
                 </div>
             </div>
 
             <div class="two fields">
-                <div class="field">
+                <div class="required field">
                     <div class="ui left labeled action input">
                         <label class="ui compact teal basic label">分類</label>
                         <div class="ui fluid multiple search selection dropdown">
-                            <input type="hidden" name="type">
+                            <input type="hidden" name="typeId">
                             <i class="dropdown icon"></i>
                             <div class="default text">分類</div>
                             <div class="menu">
-                                <div class="item" data-value="1">佛教</div>
-                                <div class="item" data-value="2">神教</div>
+                                <div th:each="type : ${types}" class="item" data-value="1" th:data-value="${type.id}" th:text="${type.name}">佛教</div>
+<!--                                <div class="item" data-value="2">神教</div>-->
                             </div>
                         </div>
                     </div>
@@ -102,22 +93,22 @@
                     <div class="ui left labeled action input">
                         <label class="ui compact teal basic label">標籤</label>
                         <div class="ui fluid multiple search  selection dropdown">
-                            <input type="hidden" name="tag">
+                            <input type="hidden" name="tagIds">
                             <i class="dropdown icon"></i>
                             <div class="default text">標籤</div>
                             <div class="menu">
-                                <div class="item" data-value="1">Java</div>
-                                <div class="item" data-value="2">Python</div>
+                                <div th:each="tag : ${tags}" class="item" data-value="1" th:data-value="${tag.id}" th:text="${tag.name}">Java</div>
+<!--                                <div class="item" data-value="2">Python</div>-->
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="field">
+            <div class="required field">
                 <div class="ui left labeled input">
                     <label class="ui teal basic label">首頁圖</label>
-                    <input type="text" name="indexPicture" placeholder="首頁圖網址">
+                    <input type="text" name="firstPicture" placeholder="首頁圖網址">
                 </div>
             </div>
 
@@ -130,8 +121,8 @@
                 </div>
                 <div class="field">
                     <div class="ui checkbox">
-                        <input type="checkbox" id="shareInfo" name="shareInfo" class="hidden">
-                        <label for="shareInfo">分享</label>
+                        <input type="checkbox" id="shareStatement" name="shareStatement" class="hidden">
+                        <label for="shareStatement">分享</label>
                     </div>
                 </div>
                 <div class="field">
@@ -142,8 +133,8 @@
                 </div>
                 <div class="field">
                     <div class="ui checkbox">
-                        <input type="checkbox" id="comment" name="comment" class="hidden">
-                        <label for="comment">評論</label>
+                        <input type="checkbox" id="commentable" name="commentable" class="hidden">
+                        <label for="commentable">評論</label>
                     </div>
                 </div>
             </div>
@@ -152,8 +143,8 @@
 
             <div class="ui right aligned container">
                 <button type="button" class="ui button" onclick="window.history.go(-1)">返回</button>
-                <button class="ui secondary button">保存</button>
-                <button class="ui teal button">發佈</button>
+                <button type="button" id="save-btn" class="ui secondary button">保存</button>
+                <button type="button" id="publish-btn" class="ui teal button">發佈</button>
             </div>
 
         </form>
@@ -164,10 +155,10 @@
 <footer th:replace="admin/_fragments :: footer">
 </footer>
 
-<th:block th:fragment="script">
+<th:block th:replace="admin/_fragments :: script">
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.js"></script>
-    <script src="../static/lib/editormd/editormd.min.js"></script>
+    <script src="../static/lib/editormd/editormd.min.js" th:src="@{lib/editormd/css/editormd.min.css}"></script>
 </th:block>
 
 <script>
@@ -178,7 +169,8 @@
             width   : "100%",
             height  : 640,
             syncScrolling : "single",
-            path    : "../static/lib/editormd/lib/"
+            // path    : "../static/lib/editormd/lib/"
+            path    : "/lib/editormd/lib/"
         });
     });
 
@@ -190,6 +182,16 @@
         on: 'hover'
     });
 
+    $('#save-btn').click(function () {
+        $('[name="published"]').val(false);
+        $('#blog-form').submit();
+    });
+
+    $('#publish-btn').click(function () {
+        $('[name="published"]').val(true);
+        $('#blog-form').submit();
+    })
+
     $('.ui.form').form({
         fields: {
             title: {
@@ -197,6 +199,27 @@
                 rules: [{
                     type: 'empty',
                     prompt: '請輸入標題'
+                }]
+            },
+            content: {
+                identifier: 'content',
+                rules: [{
+                    type: 'empty',
+                    prompt: '請輸入內容'
+                }]
+            },
+            typeId: {
+                identifier: 'typeId',
+                rules: [{
+                    type: 'empty',
+                    prompt: '請輸入分類'
+                }]
+            },
+            firstPicture: {
+                identifier: 'firstPicture',
+                rules: [{
+                    type: 'empty',
+                    prompt: '請輸入首頁圖'
                 }]
             }
         }
