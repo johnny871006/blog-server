@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="admin/_fragments :: head(~{::title})">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -41,8 +41,8 @@
 <div class="ui attached pointing menu">
     <div class="ui container">
         <div class="right menu">
-            <a href="#" class="active teal item">發佈</a>
-            <a href="#" class="item">列表</a>
+            <a href="#" th:href="@{/admin/types/input}" class="active teal item">新增</a>
+            <a href="#" th:href="@{/admin/types}" class="teal item">列表</a>
         </div>
     </div>
 </div>
@@ -50,15 +50,25 @@
 <!--中間內容-->
 <div class="m-container padding-tb-massive">
     <div class="ui container">
-        <form action="#" method="POST" th:action="@{/admin/types}" class="ui form">
+        <form action="#" method="POST" th:object="${type}" th:action="*{id}==null ? @{/admin/types} : @{/admin/types/*{id}(id=*{id})}" class="ui form">
+            <input type="hidden" name="id" th:value="*{id}">
             <div class="field">
                 <div class="ui left labeled input">
                     <label class="ui teal basic label">名稱</label>
-                    <input type="text" name="name" placeholder="分類名稱">
+                    <input type="text" name="name" placeholder="分類名稱" th:value="*{name}">
                 </div>
             </div>
 
             <div class="ui error message"></div>
+
+<!--            這種註解可以使靜態被註解，但動態一樣會有效果-->
+            <!--/*/
+            <div class="ui negative message" th:if="${#fields.hasErrors('name')}">
+                <i class="close icon"></i>
+                <div class="header">驗證失敗</div>
+                <p th:errors="*{name}">提交信息不符合規則</p>
+            </div>
+            /*/-->
 
             <div class="ui right aligned container">
                 <button type="button" class="ui button" onclick="window.history.go(-1)">返回</button>
@@ -99,7 +109,7 @@
     $('.ui.form').form({
         fields: {
             name: {
-                identifier: 'name',
+                identifier: 'namee',
                 rules: [{
                     type: 'empty',
                     prompt: '請輸入分類名稱'
@@ -107,6 +117,13 @@
             }
         }
     })
+
+    // 提示關閉初始化
+    $('.message .close')
+        .on('click', function () {
+            $(this).closest('.message')
+                .transition('fade');
+        });
 
 </script>
 </body>

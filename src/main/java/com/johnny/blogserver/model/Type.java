@@ -1,9 +1,12 @@
 package com.johnny.blogserver.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.Setter;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +21,7 @@ public class Type {
     private Long id;
 
     @Column(name = "name")
+    @NotBlank(message = "分類名稱不能為空!")
     private String name;
 
     //mappedBy : 哪個欄位維護

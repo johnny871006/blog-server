@@ -35,6 +35,15 @@ public class TypeServiceImpl implements TypeService {
         return type;
     }
 
+    @Override
+    public Type getTypeName(String name) {
+
+        System.out.println("----getTypeName前----");
+
+        return typeRepository.getTypeByName(name);
+
+    }
+
     @Transactional
     @Override
     public Page<Type> listType(Pageable pageable) {
