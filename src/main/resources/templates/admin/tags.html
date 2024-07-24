@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="admin/_fragments :: head(~{::title})">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>標籤管理</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css">
+    <link rel="stylesheet" href="../../static/css/styles.css">
+</head>
+<body>
+
+<!--導覽列-->
+<nav th:replace="admin/_fragments :: menu(3)" class="ui inverted attached segment padding-tb m-shadow">
+    <div class="ui container">
+        <div class="ui inverted secondary stackable menu">
+            <h1 class="ui teal header item">管理後臺</h1>
+            <a href="#" class="active m-item item m-mobile-hide"><i class="home icon"></i>Blog</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="idea icon"></i>分類</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="tags icon"></i>標籤</a>
+            <div class="right m-item m-mobile-hide menu">
+                <div class="ui dropdown item">
+                    <div class="text">
+                        <img class="ui avatar image" src="https://picsum.photos/100/100">
+                        Johnny
+                    </div>
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <a href="#" class="item">登出</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="ui menu toggle black icon button m-top-right m-mobile-show">
+        <i class="sidebar icon"></i>
+    </a>
+</nav>
+
+<!--二導覽列-->
+<div class="ui attached pointing menu">
+    <div class="ui container">
+        <div class="right menu">
+            <a href="#" th:href="@{/admin/tags/input}" class="teal item">新增</a>
+            <a href="#" th:href="@{/admin/tags}" class="active teal item">列表</a>
+        </div>
+    </div>
+</div>
+
+<!--中間內容-->
+<div class="m-container padding-tb-massive">
+    <div class="ui container">
+        <div class="ui success message" th:unless="${#strings.isEmpty(message)}">
+            <i class="close icon"></i>
+            <div class="header">提示 :</div>
+            <p th:text="${message}">恭喜，操作成功!</p>
+        </div>
+        <table class="ui celled center aligned table">
+            <thead>
+            <tr>
+                <th></th>
+                <th>名稱</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="tag,iterStat : ${page.content}">
+                <td th:text="${iterStat.count}">1</td>
+                <td th:text="${tag.name}">Java</td>
+                <td>
+                    <a href="#" th:href="@{/admin/tags/{id}/input(id=${tag.id})}"
+                       class="ui mini teal basic button">編輯</a>
+                    <a href="#" th:href="@{/admin/tags/{id}/delete(id=${tag.id})}"
+                       class="ui mini red basic button">刪除</a>
+                </td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <th colspan="6">
+                    <div class="ui mini floated pagination menu" th:if="${page.totalPages} > 1">
+                        <a th:href="@{/admin/tags(page=${page.number}-1)}" th:unless="${page.first}"
+                           class="item">上一頁</a>
+                        <a th:href="@{/admin/tags(page=${page.number}+1)}" th:unless="${page.last}"
+                           class="item">下一頁</a>
+                    </div>
+                    <a href="#" th:href="@{/admin/tags/input}" class="ui mini right floated teal basic button">新增</a>
+                </th>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+<!--底部footer-->
+<footer th:replace="admin/_fragments :: footer">
+</footer>
+
+<th:block th:fragment="script">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.js"></script>
+    <script src="../static/lib/editormd/editormd.min.js"></script>
+</th:block>
+
+<script>
+    $('.menu.toggle').click(() => {
+        $('.m-item').toggleClass('m-mobile-hide');
+    })
+
+    $('.ui.dropdown').dropdown({
+        on: 'hover'
+    });
+
+    // 提示關閉初始化
+    $('.message .close')
+        .on('click', function () {
+            $(this).closest('.message')
+                .transition('fade');
+        });
+</script>
+</body>
+</html>

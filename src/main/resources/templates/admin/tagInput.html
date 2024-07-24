@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="admin/_fragments :: head(~{::title})">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>標籤新增</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css">
+    <link rel="stylesheet" href="../static/lib/editormd/css/editormd.min.css">
+    <link rel="stylesheet" href="../../static/css/styles.css">
+</head>
+<body>
+
+<!--導覽列-->
+<nav th:replace="admin/_fragments :: menu(3)" class="ui inverted attached segment padding-tb m-shadow">
+    <div class="ui container">
+        <div class="ui inverted secondary stackable menu">
+            <h1 class="ui teal header item">管理後臺</h1>
+            <a href="#" class="active m-item item m-mobile-hide"><i class="home icon"></i>Blog</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="idea icon"></i>分類</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="tags icon"></i>標籤</a>
+            <div class="right m-item m-mobile-hide menu">
+                <div class="ui dropdown item">
+                    <div class="text">
+                        <img class="ui avatar image" src="https://picsum.photos/100/100">
+                        Johnny
+                    </div>
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <a href="#" class="item">登出</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="ui menu toggle black icon button m-top-right m-mobile-show">
+        <i class="sidebar icon"></i>
+    </a>
+</nav>
+
+<!--二導覽列-->
+<div class="ui attached pointing menu">
+    <div class="ui container">
+        <div class="right menu">
+            <a href="#" th:href="@{/admin/tags/input}" class="active teal item">新增</a>
+            <a href="#" th:href="@{/admin/tags}" class="teal item">列表</a>
+        </div>
+    </div>
+</div>
+
+<!--中間內容-->
+<div class="m-container padding-tb-massive">
+    <div class="ui container">
+        <form action="#" method="POST" th:object="${tag}" th:action="@{/admin/tags}" class="ui form">
+<!--              th:action="*{id}==null ? @{/admin/tags} : {/admin/tags/*{id}(id/=*{id})} "-->
+            <input type="hidden" name="id" th:value="*{id}">
+            <div class="field">
+                <div class="ui left labeled input">
+                    <label class="ui teal basic label">名稱</label>
+                    <input type="text" name="name" placeholder="標籤名稱" th:value="*{name}">
+                </div>
+            </div>
+
+            <div class="ui error message"></div>
+
+<!--            這種註解可以使靜態被註解，但動態一樣會有效果-->
+            <!--/*/
+            <div class="ui negative message" th:if="${#fields.hasErrors('name')}">
+                <i class="close icon"></i>
+                <div class="header">驗證失敗</div>
+                <p th:errors="*{name}">提交信息不符合規則</p>
+            </div>
+            /*/-->
+
+            <div class="ui right aligned container">
+                <button type="button" class="ui button" onclick="window.history.go(-1)">返回</button>
+                <button class="ui teal button submit">提交</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<!--底部footer-->
+<footer th:replace="admin/_fragments :: footer">
+</footer>
+
+<th:block th:fragment="script">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.js"></script>
+</th:block>
+
+<script>
+
+    $('.menu.toggle').click(() => {
+        $('.m-item').toggleClass('m-mobile-hide');
+    })
+
+    $('.ui.dropdown').dropdown({
+        on: 'hover'
+    });
+
+    $('.ui.form').form({
+        fields: {
+            name: {
+                identifier: 'name',
+                rules: [{
+                    type: 'empty',
+                    prompt: '請輸入分類名稱'
+                }]
+            }
+        }
+    })
+
+    // 提示關閉初始化
+    $('.message .close')
+        .on('click', function () {
+            $(this).closest('.message')
+                .transition('fade');
+        });
+
+</script>
+</body>
+</html>
