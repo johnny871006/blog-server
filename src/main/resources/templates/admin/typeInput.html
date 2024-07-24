@@ -50,8 +50,7 @@
 <!--中間內容-->
 <div class="m-container padding-tb-massive">
     <div class="ui container">
-        <form action="#" method="POST" th:object="${type}"
-              th:action="@{/admin/types}" class="ui form">
+        <form action="#" method="POST" th:object="${type}" th:action="@{/admin/types}" class="ui form">
 <!--              th:action="*{id}==null ? @{/admin/types} : {/admin/types/*{id}(id/=*{id})} "-->
             <input type="hidden" name="id" th:value="*{id}">
             <div class="field">

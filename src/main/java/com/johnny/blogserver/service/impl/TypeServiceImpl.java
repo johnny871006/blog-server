@@ -38,8 +38,6 @@ public class TypeServiceImpl implements TypeService {
     @Override
     public Type getTypeName(String name) {
 
-        System.out.println("----getTypeName前----");
-
         return typeRepository.getTypeByName(name);
 
     }
