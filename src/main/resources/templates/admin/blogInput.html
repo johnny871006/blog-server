@@ -55,13 +55,13 @@
             <div class=" required field">
                 <div class="ui left labeled input">
                     <div class="ui selection compact teal basic label dropdown">
-                        <input type="hidden" value="佛教">
+                        <input type="hidden" value="自創">
                         <i class="dropdown icon"></i>
-                        <div class="default text">佛教</div>
+                        <div class="default text">自創</div>
                         <div class="menu">
-                            <div class="item" data-value="佛教">佛教</div>
-                            <div class="item" data-value="神教">神教</div>
-                            <div class="item" data-value="魔教">魔教</div>
+                            <div class="item" data-value="自創">自創</div>
+                            <div class="item" data-value="引用">引用</div>
+                            <div class="item" data-value="問題">問題</div>
                         </div>
                     </div>
                     <input type="text" name="title" placeholder="標題">
@@ -79,12 +79,11 @@
                     <div class="ui left labeled action input">
                         <label class="ui compact teal basic label">分類</label>
                         <div class="ui fluid multiple search selection dropdown">
-                            <input type="hidden" name="typeId">
+                            <input type="hidden" name="type.id" id="typeId">
                             <i class="dropdown icon"></i>
                             <div class="default text">分類</div>
                             <div class="menu">
                                 <div th:each="type : ${types}" class="item" data-value="1" th:data-value="${type.id}" th:text="${type.name}">佛教</div>
-<!--                                <div class="item" data-value="2">神教</div>-->
                             </div>
                         </div>
                     </div>
@@ -98,7 +97,6 @@
                             <div class="default text">標籤</div>
                             <div class="menu">
                                 <div th:each="tag : ${tags}" class="item" data-value="1" th:data-value="${tag.id}" th:text="${tag.name}">Java</div>
-<!--                                <div class="item" data-value="2">Python</div>-->
                             </div>
                         </div>
                     </div>

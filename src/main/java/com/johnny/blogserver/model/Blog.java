@@ -23,6 +23,9 @@ public class Blog {
     @Column(name = "title")
     private String title;
 
+    //大字串類型，使用時才會加載，不使用不會加載
+    @Basic(fetch = FetchType.LAZY)
+    @Lob
     @Column(name = "content")
     private String content;
 
@@ -72,4 +75,7 @@ public class Blog {
 
     @OneToMany(mappedBy = "blog")
     private List<Comment> comments = new ArrayList<>();
+
+    @Transient
+    private String tagIds;
 }
