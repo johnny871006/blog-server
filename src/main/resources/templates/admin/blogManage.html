@@ -40,8 +40,8 @@
 <div class="ui attached pointing menu">
     <div class="ui container">
         <div class="right menu">
-            <a href="#" class="item">發佈</a>
-            <a href="#" class="active teal item">列表</a>
+            <a href="#" th:href="@{/admin/blogManage/input}" class="item">發佈</a>
+            <a href="#" th:href="@{/admin/blogManage}" class="active teal item">列表</a>
         </div>
     </div>
 </div>
@@ -170,7 +170,7 @@
     });
 
     function loadData() {
-        $("#table-container").load(/*[[@{/admin/blogs/search}]]*/"/admin/blogManage/search", {
+        $("#table-container").load(/*[[@{/admin/blogManage/search}]]*/"/admin/blogManage/search", {
             title: $("[name='title']").val(),
             typeId: $("[name='typeId']").val(),
             recommend: $("[name='recommend']").prop('checked'),

@@ -16,6 +16,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -61,16 +62,22 @@ public class BlogServiceImpl implements BlogService {
         }, pageable);
     }
 
+    @Transactional
     @Override
     public Blog saveBlog(Blog blog) {
 
-        blog.setCreateTime(new Date());
-        blog.setUpdateTime(new Date());
-        blog.setViews(0);
+        if (blog.getId() == null) {
+            blog.setCreateTime(new Date());
+            blog.setUpdateTime(new Date());
+            blog.setViews(0);
+        } else {
+            blog.setUpdateTime(new Date());
+        }
 
         return blogRepository.save(blog);
     }
 
+    @Transactional
     @Override
     public Blog updateBlog(Long id, Blog blog) {
 
@@ -86,6 +93,7 @@ public class BlogServiceImpl implements BlogService {
         return blogRepository.save(b);
     }
 
+    @Transactional
     @Override
     public void deleteBlog(Long id) {
         blogRepository.deleteById(id);
