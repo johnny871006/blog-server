@@ -6,6 +6,7 @@ import com.johnny.blogserver.dto.BlogQuery;
 import com.johnny.blogserver.model.Blog;
 import com.johnny.blogserver.model.Type;
 import com.johnny.blogserver.service.BlogService;
+import com.johnny.blogserver.util.MyBeanUtils;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Predicate;
@@ -82,14 +83,13 @@ public class BlogServiceImpl implements BlogService {
     public Blog updateBlog(Long id, Blog blog) {
 
         Blog b = blogRepository.findById(id).orElse(null);
-
         if (b == null) {
             throw new NotFoundException("此Blog不存在!");
         }
 
         //可能b,blog要換位子
-        BeanUtils.copyProperties(b, blog);
-
+        BeanUtils.copyProperties(blog, b, MyBeanUtils.getNullPropertyNames(blog));
+        b.setUpdateTime(new Date());
         return blogRepository.save(b);
     }
 
