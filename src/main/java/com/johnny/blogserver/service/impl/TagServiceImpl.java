@@ -60,7 +60,7 @@ public class TagServiceImpl implements TagService {
     @Transactional
     @Override
     public List<Tag> listTag(String ids) { //ids:1,2,3
-        return tagRepository.findAll();
+        return tagRepository.findAllById(converToList(ids));
     }
 
     @Transactional

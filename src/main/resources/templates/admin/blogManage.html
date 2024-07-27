@@ -54,24 +54,20 @@
             <input type="hidden" name="page">
             <div class="inline fields">
                 <div class="field">
-                    <input type="text" name="title" placeholder="標題">
+                    <label>
+                        <input type="text" name="title" placeholder="標題">
+                    </label>
                 </div>
                 <div class="field">
-<!--                    <div class="ui labeled action input">-->
                         <div class="ui type selection dropdown">
                             <input type="hidden" name="typeId">
                             <i class="dropdown icon"></i>
                             <div class="default text">分類</div>
                             <div class="menu">
                                 <div th:each="type:${types}" class="item" data-value="1" th:data-value="${type.id}" th:text="${type.name}">佛教</div>
-                                <!--/*-->
-                                <div class="item" data-value="2">神教</div>
-                                <!--*/-->
                             </div>
                         </div>
                         <button id="clear-btn" class="ui compact button">clear</button>
-<!--                    </div>-->
-
                 </div>
                 <div class="field">
                     <div class="ui checkbox">
