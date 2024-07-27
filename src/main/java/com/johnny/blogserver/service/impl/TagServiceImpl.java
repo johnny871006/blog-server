@@ -31,10 +31,7 @@ public class TagServiceImpl implements TagService {
     @Transactional
     @Override
     public Tag getTag(Long id) {
-
-        Tag tag = findOne(id);
-
-        return tag;
+        return findOne(id);
     }
 
     @Transactional
@@ -81,9 +78,7 @@ public class TagServiceImpl implements TagService {
     @Override
     public void deleteTag(Long id) {
 
-        Tag tag = findOne(id);
-
-        tagRepository.delete(tag);
+        tagRepository.delete(findOne(id));
     }
 
     private Tag findOne(Long id) {

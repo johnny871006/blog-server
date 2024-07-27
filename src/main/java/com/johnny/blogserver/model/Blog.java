@@ -2,8 +2,6 @@ package com.johnny.blogserver.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -79,26 +77,26 @@ public class Blog {
     @Transient
     private String tagIds;
 
-    public void init(){
+    public void init() {
         this.tagIds = tagsToIds(this.getTags());
     }
 
     //1,2,3,4,...
-    private String tagsToIds(List<Tag> tags){
-        if(!tags.isEmpty()){
+    private String tagsToIds(List<Tag> tags) {
+        if (!tags.isEmpty()) {
             StringBuffer ids = new StringBuffer();
             boolean flag = false;
-            for(Tag tag : tags){
+            for (Tag tag : tags) {
                 //flag 是不讓最後有加一個，
-                if(flag){
+                if (flag) {
                     ids.append(",");
-                }else{
+                } else {
                     flag = true;
                 }
                 ids.append(tag.getId());
             }
             return ids.toString();
-        }else{
+        } else {
             return tagIds;
         }
     }
