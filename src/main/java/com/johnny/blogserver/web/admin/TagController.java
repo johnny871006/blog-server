@@ -46,32 +46,6 @@ public class TagController {
         return "admin/tagInput";
     }
 
-    @PostMapping("/tags/{id}")
-    public String editPost(@Valid Tag tag,
-                           BindingResult bindingResult,
-                           @PathVariable Long id,
-                           RedirectAttributes attributes) {
-
-        Tag t1 = tagService.getTagName(tag.getName());
-
-        if(t1 != null) {
-            bindingResult.rejectValue("name","nameError","此標籤已有");
-        }
-
-        if (bindingResult.hasErrors()) {
-            return "admin/tagInput";
-        }
-
-        Tag t2 = tagService.updateTag(id,tag);
-
-        if (t2 == null) {
-            attributes.addFlashAttribute("message","更新失敗");
-        } else{
-            attributes.addFlashAttribute("message","更新成功");
-        }
-        return "redirect:/admin/tags";
-    }
-
     @PostMapping("/tags")
     public String post(@Valid Tag tag, BindingResult bindingResult, RedirectAttributes attributes) {
 
@@ -93,6 +67,32 @@ public class TagController {
         }
         return "redirect:/admin/tags";
     }
+
+//    @PostMapping("/tags/{id}")
+//    public String editPost(@Valid Tag tag,
+//                           BindingResult bindingResult,
+//                           @PathVariable Long id,
+//                           RedirectAttributes attributes) {
+//
+//        Tag t1 = tagService.getTagName(tag.getName());
+//
+//        if(t1 != null) {
+//            bindingResult.rejectValue("name","nameError","此標籤已有");
+//        }
+//
+//        if (bindingResult.hasErrors()) {
+//            return "admin/tagInput";
+//        }
+//
+//        Tag t2 = tagService.updateTag(id,tag);
+//
+//        if (t2 == null) {
+//            attributes.addFlashAttribute("message","更新失敗");
+//        } else{
+//            attributes.addFlashAttribute("message","更新成功");
+//        }
+//        return "redirect:/admin/tags";
+//    }
 
     @GetMapping("/tags/{id}/delete")
     public String delete(@PathVariable Long id, RedirectAttributes attributes) {

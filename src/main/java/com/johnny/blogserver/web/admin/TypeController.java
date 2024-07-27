@@ -46,32 +46,6 @@ public class TypeController {
         return "admin/typeInput";
     }
 
-    @PostMapping("/types/{id}")
-    public String editPost(@Valid Type type,
-                           BindingResult bindingResult,
-                           @PathVariable Long id,
-                           RedirectAttributes attributes) {
-
-        Type t1 = typeService.getTypeName(type.getName());
-
-        if(t1 != null) {
-            bindingResult.rejectValue("name","nameError","此分類已有");
-        }
-
-        if (bindingResult.hasErrors()) {
-            return "admin/typeInput";
-        }
-
-        Type t2 = typeService.updateType(id,type);
-
-        if (t2 == null) {
-            attributes.addFlashAttribute("message","更新失敗");
-        } else{
-            attributes.addFlashAttribute("message","更新成功");
-        }
-        return "redirect:/admin/types";
-    }
-
     @PostMapping("/types")
     public String post(@Valid Type type, BindingResult bindingResult, RedirectAttributes attributes) {
 
@@ -93,6 +67,32 @@ public class TypeController {
         }
         return "redirect:/admin/types";
     }
+
+    //    @PostMapping("/types/{id}")
+//    public String editPost(@Valid Type type,
+//                           BindingResult bindingResult,
+//                           @PathVariable Long id,
+//                           RedirectAttributes attributes) {
+//
+//        Type t1 = typeService.getTypeName(type.getName());
+//
+//        if(t1 != null) {
+//            bindingResult.rejectValue("name","nameError","此分類已有");
+//        }
+//
+//        if (bindingResult.hasErrors()) {
+//            return "admin/typeInput";
+//        }
+//
+//        Type t2 = typeService.updateType(id,type);
+//
+//        if (t2 == null) {
+//            attributes.addFlashAttribute("message","更新失敗");
+//        } else{
+//            attributes.addFlashAttribute("message","更新成功");
+//        }
+//        return "redirect:/admin/types";
+//    }
 
     @GetMapping("/types/{id}/delete")
     public String delete(@PathVariable Long id, RedirectAttributes attributes) {
