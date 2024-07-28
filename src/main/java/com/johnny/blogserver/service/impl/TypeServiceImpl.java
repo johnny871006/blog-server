@@ -59,19 +59,19 @@ public class TypeServiceImpl implements TypeService {
         return typeRepository.findTop(pageable);
     }
 
-    @Transactional
-    @Override
-    public Type updateType(Long id, Type type) {
-
-        Type t = findOne(id);
-
-        if (t == null) {
-            throw new NotFoundException("不存在此分類");
-        }
-        BeanUtils.copyProperties(type, t);
-
-        return typeRepository.save(t);
-    }
+//    @Transactional
+//    @Override
+//    public Type updateType(Long id, Type type) {
+//
+//        Type t = findOne(id);
+//
+//        if (t == null) {
+//            throw new NotFoundException("不存在此分類");
+//        }
+//        BeanUtils.copyProperties(type, t);
+//
+//        return typeRepository.save(t);
+//    }
 
     @Transactional
     @Override
