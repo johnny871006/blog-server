@@ -65,19 +65,19 @@ public class TagServiceImpl implements TagService {
         return tagRepository.findTop(pageable);
     }
 
-    @Transactional
-    @Override
-    public Tag updateTag(Long id, Tag tag) {
-
-        Tag t = findOne(id);
-
-        if (t == null) {
-            throw new NotFoundException("不存在此標籤");
-        }
-        BeanUtils.copyProperties(tag, t);
-
-        return tagRepository.save(t);
-    }
+//    @Transactional
+//    @Override
+//    public Tag updateTag(Long id, Tag tag) {
+//
+//        Tag t = findOne(id);
+//
+//        if (t == null) {
+//            throw new NotFoundException("不存在此標籤");
+//        }
+//        BeanUtils.copyProperties(tag, t);
+//
+//        return tagRepository.save(t);
+//    }
 
     @Transactional
     @Override

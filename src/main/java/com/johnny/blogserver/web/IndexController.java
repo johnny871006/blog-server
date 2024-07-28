@@ -1,7 +1,5 @@
 package com.johnny.blogserver.web;
 
-import com.johnny.blogserver.NotFoundException;
-import com.johnny.blogserver.dto.BlogQuery;
 import com.johnny.blogserver.service.BlogService;
 import com.johnny.blogserver.service.TagService;
 import com.johnny.blogserver.service.TypeService;
@@ -12,8 +10,6 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
 
 @Controller
 public class IndexController {
@@ -29,24 +25,24 @@ public class IndexController {
 
     @GetMapping("/")
     public String index(@PageableDefault(size = 6, sort = {"updateTime"}, direction = Sort.Direction.DESC) Pageable pageable,
-                        Model model){
+                        Model model) {
 
         model.addAttribute("page", blogService.listBlog(pageable));
         model.addAttribute("types", typeService.listTypeTop(6));
-        model.addAttribute("tags",tagService.listTagTop(10));
-        model.addAttribute("recommendBlogs",blogService.listRecommendBlogTop(8));
+        model.addAttribute("tags", tagService.listTagTop(10));
+        model.addAttribute("recommendBlogs", blogService.listRecommendBlogTop(8));
 
         return "index";
     }
 
     @GetMapping("/about")
-    public String about(){
+    public String about() {
 
         return "about";
     }
 
     @GetMapping("/blog")
-    public String blog(){
+    public String blog() {
 
         return "blog";
     }

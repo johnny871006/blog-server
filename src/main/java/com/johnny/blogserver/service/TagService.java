@@ -22,7 +22,7 @@ public interface TagService {
 
     List<Tag> listTagTop(Integer size);
 
-    Tag updateTag(Long id,Tag tag);
+//    Tag updateTag(Long id,Tag tag);
 
     void deleteTag(Long id);
 }
