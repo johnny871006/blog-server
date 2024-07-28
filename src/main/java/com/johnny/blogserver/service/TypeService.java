@@ -18,7 +18,9 @@ public interface TypeService {
 
     List<Type> listType();
 
-    Type updateType(Long id,Type type);
+    List<Type> listTypeTop(Integer size);
+
+    Type updateType(Long id, Type type);
 
     void deleteType(Long id);
 }

@@ -6,7 +6,18 @@
 </head>
 <body>
 <!--    導覽列-->
-<nav th:replace="admin/_fragments :: menu(0)" class="ui inverted attached segment padding-tb m-shadow">
+<nav class="ui inverted attached segment padding-tb m-shadow">
+    <div class="ui container">
+        <div class="ui inverted secondary stackable menu">
+            <h1 class="ui teal header item">管理後臺</h1>
+            <a href="#" th:href="@{/admin/blogManage}" class="m-item item m-mobile-hide" ><i class="home icon"></i>Blog</a>
+            <a href="#" th:href="@{/admin/types}" class="m-item item m-mobile-hide" ><i class="idea icon"></i>分類</a>
+            <a href="#" th:href="@{/admin/tags}" class="m-item item m-mobile-hide" ><i class="tags icon"></i>標籤</a>
+        </div>
+    </div>
+    <a href="#" class="ui menu toggle black icon button m-top-right m-mobile-show">
+        <i class="sidebar icon"></i>
+    </a>
 </nav>
 
 <br>
@@ -44,7 +55,7 @@
                 <div class="ui inverted link list">
                     <div class="item">
                         <img src="../static/images/OIP.jpg" class="ui rounded image" alt="二維碼" style="width: 120px"
-                             th:src="@{/static/images/OIP.jpg}">
+                             th:src="@{../static/images/OIP.jpg}">
                     </div>
                 </div>
             </div>

@@ -22,117 +22,51 @@
                             <h3 class="ui teal header">Blog</h3>
                         </div>
                         <div class=" right aligned column">
-                            共 <h3 class="ui orange header inline-block"> 14 </h3> 篇
+                            共 <h3 class="ui orange header inline-block" th:text="${page.totalElements}"> 14 </h3> 篇
                         </div>
                     </div>
                 </div>
 
                 <!--content-->
-                <div class="ui attached segment">
-                    <div class="ui padded vertical segment padding-tb-mid">
-                        <div class="ui mobile reversed stackable grid">
+                <div class="ui attached segment" >
+                    <div class="ui padded vertical segment padding-tb-mid" th:each="blog : ${page.content}">
+                        <div class="ui middle aligned mobile reversed stackable grid" >
                             <div class="eleven wide column">
-                                <h3 class="ui header">你真的理解什麼是命運嗎?</h3>
-                                <p class="ui m-text">
+                                <h3 class="ui header"><a href="" class="m-black"
+                                                         th:text="${blog.title}">你真的理解什麼是命運嗎?</a></h3>
+                                <!--                                th語法加 | | 可以新增文字-->
+                                <p class="ui m-text" th:text="|${blog.content}....|">
                                     你真的理解什麼是命運嗎?你真的理解什麼是命運嗎?你真的理解什麼是命運嗎?你真的理解什麼是命運嗎?</p>
                                 <div class="ui grid">
                                     <div class="eleven wide column">
                                         <div class="ui mini horizontal link list">
                                             <div class="item">
-                                                <img src="https://picsum.photos/800/450" alt="" class="ui image avatar">
+                                                <img src="https://picsum.photos/800/450" alt="" class="ui image avatar"
+                                                     th:src="@{${blog.user.avatar}}">
                                                 <div class="content">
-                                                    <a class="header">God</a>
+                                                    <a class="header" th:text="${blog.user.nickName}">God</a>
                                                 </div>
                                             </div>
                                             <div class="item">
-                                                <i class="calendar icon"></i>2024-07-17
+                                                <i class="calendar icon"></i><span
+                                                    th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd') }">2024-07-17</span>
                                             </div>
                                             <div class="item">
-                                                <i class="eye icon"></i> 666
+                                                <i class="eye icon"></i><span th:text="${blog.views}">666</span>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="right aligned five wide column">
-                                        <a href="#" target="_blank" class="ui teal basic label">命運</a>
+                                        <a href="#" target="_blank" class="ui teal basic label"
+                                           th:text="${blog.type.name}">命運</a>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="five wide column">
-                                <a href="#" target="_blank">
-                                    <img src="https://picsum.photos/800/450" alt="" class="ui rounded image">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="ui padded vertical segment padding-tb-mid">
-                        <div class="ui mobile reversed stackable grid">
-                            <div class="eleven wide column">
-                                <h3 class="ui header">你真的理解什麼是命運嗎?</h3>
-                                <p class="ui m-text">
-                                    你真的理解什麼是命運嗎?你真的理解什麼是命運嗎?你真的理解什麼是命運嗎?你真的理解什麼是命運嗎?</p>
-                                <div class="ui grid">
-                                    <div class="eleven wide column">
-                                        <div class="ui mini horizontal link list">
-                                            <div class="item">
-                                                <img src="https://picsum.photos/800/450" alt="" class="ui image avatar">
-                                                <div class="content">
-                                                    <a class="header">God</a>
-                                                </div>
-                                            </div>
-                                            <div class="item">
-                                                <i class="calendar icon"></i>2024-07-17
-                                            </div>
-                                            <div class="item">
-                                                <i class="eye icon"></i> 666
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="right aligned five wide column">
-                                        <a href="#" target="_blank" class="ui teal basic label">命運</a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="five wide column">
-                                <a href="#" target="_blank">
-                                    <img src="https://picsum.photos/800/450" alt="" class="ui rounded image">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="ui padded vertical segment padding-tb-mid">
-                        <div class="ui mobile reversed stackable grid">
-                            <div class="eleven wide column">
-                                <h3 class="ui header">你真的理解什麼是命運嗎?</h3>
-                                <p class="ui m-text">
-                                    你真的理解什麼是命運嗎?你真的理解什麼是命運嗎?你真的理解什麼是命運嗎?你真的理解什麼是命運嗎?</p>
-                                <div class="ui grid">
-                                    <div class="eleven wide column">
-                                        <div class="ui mini horizontal link list">
-                                            <div class="item">
-                                                <img src="https://picsum.photos/800/450" alt="" class="ui image avatar">
-                                                <div class="content">
-                                                    <a class="header">God</a>
-                                                </div>
-                                            </div>
-                                            <div class="item">
-                                                <i class="calendar icon"></i>2024-07-17
-                                            </div>
-                                            <div class="item">
-                                                <i class="eye icon"></i> 666
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="right aligned five wide column">
-                                        <a href="#" target="_blank" class="ui teal basic label">命運</a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="five wide column">
-                                <a href="#" target="_blank">
-                                    <img src="https://picsum.photos/800/450" alt="" class="ui rounded image">
+                                <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank">
+                                    <img src="https://picsum.photos/800/450" alt="" class="ui rounded image"
+                                         th:src="@{${blog.firstPicture}}">
                                 </a>
                             </div>
                         </div>
@@ -140,13 +74,15 @@
                 </div>
 
                 <!--footer-->
-                <div class="ui bottom attached segment">
+                <div class="ui bottom attached segment" th:if="${page.totalPages} > 1">
                     <div class="ui middle aligned two column grid">
                         <div class="column">
-                            <a href="#" class="ui teal basic mini button">上一頁</a>
+                            <a href="#" class="ui teal basic mini button" th:href="@{/(page=${page.number}-1)}"
+                               th:unless="${page.first}">上一頁</a>
                         </div>
                         <div class=" right aligned column">
-                            <a href="#" class="ui teal basic mini button">下一頁</a>
+                            <a href="#" class="ui teal basic mini button" th:href="@{/(page=${page.number}+1)}"
+                               th:unless="${page.first}">下一頁</a>
                         </div>
                     </div>
                 </div>
@@ -163,25 +99,17 @@
                                 <i class="idea icon"></i>分類
                             </div>
                             <div class=" right aligned column">
-                                <a href="#" target="_blank">
-                                    more
-                                    <i class="angle double right icon"></i>
-                                </a>
+                                <a href="#" target="_blank">more<i class="angle double right icon"></i></a>
                             </div>
                         </div>
                     </div>
-                    <div class="ui segment teal">
-                        <div class="ui vertical menu fluid">
-                            <a href="#" class="item">
-                                學習輪迴
-                                <div class="ui teal basic left pointing label">66</div>
-                            </a><a href="#" class="item">
-                            學習命運
-                            <div class="ui teal basic left pointing label">66</div>
-                        </a><a href="#" class="item">
-                            學習神
-                            <div class="ui teal basic left pointing label">66</div>
-                        </a>
+                    <div class="ui teal segment ">
+                        <div class="ui fluid vertical menu" >
+                            <a href="#" class="item" th:each="type : ${types}">
+                                <span th:text="${type.name}">學習輪迴</span>
+<!--                                th語法#arrays.length可拿到list長度-->
+                                <div class="ui teal basic left pointing label" th:text="${#arrays.length(type.blogs)}">66</div>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -202,19 +130,10 @@
                         </div>
                     </div>
                     <div class="ui segment teal">
-                        <a href="#" target="_blank" class="ui teal basic left pointing label margin-tb">方法
-                            <div class="detail">22</div>
+                        <a href="#" target="_blank" class="ui teal basic left pointing label margin-tb" th:each="tag : ${tags}">
+                            <span th:text="${tag.name}">方法</span>
+                            <div class="detail" th:text="${#arrays.length(tag.blogs)}">22</div>
                         </a>
-                        <a href="#" target="_blank" class="ui teal basic left pointing label margin-tb">方法
-                            <div class="detail">22</div>
-                        </a>
-                        <a href="#" target="_blank" class="ui teal basic left pointing label margin-tb">方法
-                            <div class="detail">22</div>
-                        </a>
-                        <a href="#" target="_blank" class="ui teal basic left pointing label margin-tb">方法
-                            <div class="detail">22</div>
-                        </a>
-
                     </div>
                 </div>
 
@@ -223,14 +142,8 @@
                     <div class="ui secondary segment">
                         <i class="bookmark icon"></i>最新推薦
                     </div>
-                    <div class="ui segment">
-                        <a href="#" target="_blank" class="m-black text-thin">Story</a>
-                    </div>
-                    <div class="ui segment">
-                        <a href="#" target="_blank" class="m-black text-thin">Story</a>
-                    </div>
-                    <div class="ui segment">
-                        <a href="#" target="_blank" class="m-black text-thin">Story</a>
+                    <div class="ui segment" th:each="blog : ${recommendBlogs}">
+                        <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank" class="m-black text-thin" th:text="${blog.title}">Story</a>
                     </div>
                 </div>
 
