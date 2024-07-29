@@ -3,6 +3,7 @@ package com.johnny.blogserver.service.impl;
 import com.johnny.blogserver.dao.CommentRepository;
 import com.johnny.blogserver.model.Comment;
 import com.johnny.blogserver.service.CommentService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,7 @@ public class CommentServiceImpl implements CommentService {
         return commentRepository.findByBlogId(blogId,sort);
     }
 
+    @Transactional
     @Override
     public Comment saveComment(Comment comment) {
         Long parentCommentId = comment.getParentComment().getId();

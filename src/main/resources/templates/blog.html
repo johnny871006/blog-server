@@ -92,7 +92,7 @@
                         <h3 class="ui dividing header">Comments</h3>
                         <div class="comment" th:each="comment : ${comments}">
                             <a class="avatar">
-                                <img src="https://picsum.photos/800/450" alt="" th:src="@{${'comment.avatar'}}">
+                                <img src="https://picsum.photos/800/450" alt="圖" th:src="@{${comment.avatar}}">
                             </a>
                             <div class="content">
                                 <a class="author" th:text="${comment.nickName}">Matt</a>
