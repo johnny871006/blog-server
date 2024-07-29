@@ -16,53 +16,42 @@
         <div class="ui top attached segment">
             <div class="ui horizontal link list">
                 <div class="item">
-                    <img src="https://picsum.photos/800/450" alt="" class="ui image avatar">
+                    <img src="https://picsum.photos/800/450" alt="" class="ui image avatar" th:src="@{${blog.user.avatar}}">
                     <div class="content">
-                        <a class="header">God</a>
+                        <a class="header" th:text="${blog.user.nickName}">God</a>
                     </div>
                 </div>
                 <div class="item">
-                    <i class="calendar icon"></i>2024-07-17
+                    <i class="calendar icon"></i> <span th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd')}">2024-07-17</span>
                 </div>
                 <div class="item">
-                    <i class="eye icon"></i> 666
+                    <i class="eye icon"></i> <span th:text="${blog.views}">666</span>
                 </div>
             </div>
         </div>
 
         <!--圖片區域-->
         <div class="ui attached segment">
-            <img src="https://picsum.photos/800/450" alt="" class="ui fluid rounded image">
+            <img src="https://picsum.photos/800/450" th:src="@{${blog.firstPicture}}" alt="圖片" class="ui fluid rounded image">
         </div>
 
         <!--內容區域-->
         <div class="ui attached padded segment">
             <div class="ui right aligned basic segment">
-                <div class="ui orange basic label">Cool</div>
+                <div class="ui orange basic label" th:text="${blog.flag}">Cool</div>
             </div>
 
-            <h2 class="ui center aligned header">文章</h2>
+            <h2 class="ui center aligned header" th:text="${blog.title}">文章</h2>
             <br>
 
-            <div id="content" class="typo typo-selection m-padded-lr">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia, suscipit.</p>
-                <h2>1</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, odio.</p>
-                <h2>2</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, odio.</p>
-                <h2>3</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, odio.</p>
-                <h2>4</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, odio.</p>
-                <h2>5</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, odio.</p>
-                <h2>總結</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, odio.</p>
+            <!-- 有makedown轉成html套件(https://github.com/atlassian/commonmark-java) -->
+            <!-- 若使用需將th:text改為th:utext -->
+            <div id="content" class="typo typo-selection m-padded-lr" th:text="${blog.content}">
             </div>
 
             <!--標籤-->
             <div class="m-padded-lr padding-tb-mini">
-                <div class="ui basic teal left pointing label">方法論</div>
+                <div class="ui basic teal left pointing label" th:each="tag : ${blog.tags}" th:text="${tag.name}">方法論</div>
             </div>
 
             <!--點讚-->
@@ -77,9 +66,9 @@
             <div class="ui middle aligned grid">
                 <div class="eleven wide column">
                     <ul class="list">
-                        <li>作者: 神秘人</li>
-                        <li>發布時間: 神秘時間</li>
-                        <li>版權聲明: 神秘版權</li>
+                        <li>作者: <a href="" th:href="@{/about}" target="_blank" th:text="${blog.user.nickName}">神秘人</a></li>
+                        <li>發布時間: <span th:text="${#dates.format(blog.createTime,'yyyy-MM-dd HH-mm')}">神秘時間</span> </li>
+                        <li>版權聲明: 版權是我滴</li>
                     </ul>
                 </div>
                 <div class="five wide column">

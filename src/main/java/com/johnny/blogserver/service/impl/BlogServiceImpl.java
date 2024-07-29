@@ -6,6 +6,7 @@ import com.johnny.blogserver.dto.BlogQuery;
 import com.johnny.blogserver.model.Blog;
 import com.johnny.blogserver.model.Type;
 import com.johnny.blogserver.service.BlogService;
+import com.johnny.blogserver.util.MarkdownUtils;
 import com.johnny.blogserver.util.MyBeanUtils;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
@@ -20,6 +21,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.yaml.snakeyaml.error.Mark;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -34,6 +36,20 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public Blog getBlog(Long id) {
         return blogRepository.findById(id).orElse(null);
+    }
+
+    //markdown轉html
+    @Override
+    public Blog getAndConvert(Long id) {
+        Blog blog = blogRepository.findById(id).orElse(null);
+        if(blog == null){
+            throw new NotFoundException("該內容不存在");
+        }
+        Blog b = new Blog();
+        BeanUtils.copyProperties(blog,b);
+        String content = b.getContent();
+        b.setContent(MarkdownUtils.markdownToHtmlExtensions(content));
+        return b;
     }
 
     @Override
