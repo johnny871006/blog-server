@@ -96,7 +96,10 @@
                                 <img src="https://picsum.photos/800/450" alt="圖" th:src="@{${comment.avatar}}">
                             </a>
                             <div class="content">
-                                <a class="author" th:text="${comment.nickName}">Matt</a>
+                                <a class="author" >
+                                    <span th:text="${comment.nickName}">Matt</span>
+                                    <div class="ui mini basic teal left pointing label" th:if="${comment.originalPoster}">原PO</div>
+                                </a>
                                 <div class="metadata">
                                     <span class="date" th:text="${#dates.format(comment.createTime,'yyyy-MM-dd HH-mm')}">Today at 5:42PM</span>
                                 </div>
@@ -116,6 +119,7 @@
                                     <div class="content">
                                         <a class="author" >
                                             <span th:text="${reply.nickName}">Matt</span>&nbsp;
+                                            <div class="ui mini basic teal left pointing label " th:if="${reply.originalPoster}">原PO</div>&nbsp;
                                             <span class="m-teal" th:text="'@'+${reply.parentComment.nickName}" >Johnny</span>
                                         </a>
                                         <div class="metadata">
@@ -207,13 +211,13 @@
                     <div class="field m-mobile-wide m-margin-bottom">
                         <label class="ui left icon input">
                             <i class="user icon"></i>
-                            <input type="text" name="nickName" placeholder="姓名">
+                            <input  type="text"  name="nickName" placeholder="姓名" th:value="${session.user}!=null ? ${session.user.nickName} : null">
                         </label>
                     </div>
                     <div class="field m-mobile-wide m-margin-bottom">
                         <label class="ui left icon input">
                             <i class="mail icon"></i>
-                            <input type="text" name="email" placeholder="電子信箱">
+                            <input type="text" name="email" placeholder="電子信箱" th:value="${session.user}!=null ? ${session.user.email} : null">
                         </label>
                     </div>
                     <div class="field m-mobile-wide m-margin-bottom">

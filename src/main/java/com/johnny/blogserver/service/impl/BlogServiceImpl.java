@@ -35,6 +35,7 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public Blog getBlog(Long id) {
+        blogRepository.updateViews(id);
         return blogRepository.findById(id).orElse(null);
     }
 

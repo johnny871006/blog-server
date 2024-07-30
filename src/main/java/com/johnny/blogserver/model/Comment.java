@@ -43,4 +43,7 @@ public class Comment {
     @ManyToOne
     private Comment parentComment;
 
+    @Column(name = "original_poster")
+    private Boolean originalPoster;
+
 }
