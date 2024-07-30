@@ -116,7 +116,7 @@
                                     <div class="content">
                                         <a class="author" >
                                             <span th:text="${reply.nickName}">Matt</span>&nbsp;
-                                            <span class="teal" th:text="'@'+${reply.parentComment.nickName}" >Johnny</span>
+                                            <span class="m-teal" th:text="'@'+${reply.parentComment.nickName}" >Johnny</span>
                                         </a>
                                         <div class="metadata">
                                             <span class="date" th:text="${#dates.format(reply.createTime,'yyyy-MM-dd HH-mm')}">Today at 5:42PM</span>

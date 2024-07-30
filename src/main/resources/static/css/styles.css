@@ -102,6 +102,10 @@ body{
     color: #333;
 }
 
+.m-teal {
+    color: #00b5ad;
+}
+
 .m-mobile-show{
     display: none !important;
 }
