@@ -25,5 +25,5 @@ public interface BlogRepository extends JpaRepository<Blog, Long>, JpaSpecificat
     @Transactional
     @Modifying
     @Query("UPDATE Blog b SET b.views = b.views+1 WHERE b.id= ?1")
-    int updateViews(Long id);
+    void updateViews(Long id);
 }
