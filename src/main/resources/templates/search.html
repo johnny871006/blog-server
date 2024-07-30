@@ -29,8 +29,11 @@
             <div class="ui padded vertical segment padding-tb-mid" th:each="blog : ${page.content}">
                 <div class="ui middle aligned mobile reversed stackable grid">
                     <div class="eleven wide column">
-                        <h3 class="ui header"><a href="" class="m-black"
-                                                 th:text="${blog.title}">你真的理解什麼是命運嗎?</a></h3>
+                        <h3 class="ui header">
+                            <a href="" class="m-black" th:href="@{/blog/{id}(id=${blog.id})}" th:text="${blog.title}">
+                                你真的理解什麼是命運嗎?
+                            </a>
+                        </h3>
                         <!--th語法加 | | 可以新增文字-->
                         <p class="ui m-text" th:text="|${blog.content}....|">
                             你真的理解什麼是命運嗎?你真的理解什麼是命運嗎?你真的理解什麼是命運嗎?你真的理解什麼是命運嗎?</p>
