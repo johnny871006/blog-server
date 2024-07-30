@@ -90,6 +90,7 @@
                 <div th:fragment="commentList">
                     <div class="ui threaded comments" style="max-width: 100% !important;">
                         <h3 class="ui dividing header">Comments</h3>
+                        <!--留言區父-->
                         <div class="comment" th:each="comment : ${comments}">
                             <a class="avatar">
                                 <img src="https://picsum.photos/800/450" alt="圖" th:src="@{${comment.avatar}}">
@@ -106,7 +107,31 @@
                                     <a class="reply" data-commentid="1" data-commentnickname="Matt" th:attr="data-commentid=${comment.id},data-commentnickname=${comment.nickName}" onclick="reply(this)">Reply</a>
                                 </div>
                             </div>
+                            <!--留言區子-->
+                            <div class="comments" th:if="${#arrays.length(comment.replyComments)>0}">
+                                <div class="comment" th:each="reply : ${comment.replyComments}">
+                                    <a class="avatar">
+                                        <img src="https://picsum.photos/800/450" alt="圖" th:src="@{${reply.avatar}}">
+                                    </a>
+                                    <div class="content">
+                                        <a class="author" >
+                                            <span th:text="${reply.nickName}">Matt</span>&nbsp;
+                                            <span class="teal" th:text="'@'+${reply.parentComment.nickName}" >Johnny</span>
+                                        </a>
+                                        <div class="metadata">
+                                            <span class="date" th:text="${#dates.format(reply.createTime,'yyyy-MM-dd HH-mm')}">Today at 5:42PM</span>
+                                        </div>
+                                        <div class="text" th:text="${reply.content}">
+                                            How artistic!
+                                        </div>
+                                        <div class="actions">
+                                            <a class="reply" data-commentid="1" data-commentnickname="Matt" th:attr="data-commentid=${reply.id},data-commentnickname=${reply.nickName}" onclick="reply(this)">Reply</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+
                         <!--/*-->
                         <div class="comment">
                             <a class="avatar">
@@ -268,6 +293,7 @@
         }
     });
 
+    //進入網頁直接載入留言區，但有問題{id}string無法轉成long，待解決
     // $(function () {
     //     $('#comment-container').load("/comments/{id}(id=${blog.id})");
     // });
