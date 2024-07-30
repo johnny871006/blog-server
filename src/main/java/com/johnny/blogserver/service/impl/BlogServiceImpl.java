@@ -8,10 +8,7 @@ import com.johnny.blogserver.model.Type;
 import com.johnny.blogserver.service.BlogService;
 import com.johnny.blogserver.util.MarkdownUtils;
 import com.johnny.blogserver.util.MyBeanUtils;
-import jakarta.persistence.criteria.CriteriaBuilder;
-import jakarta.persistence.criteria.CriteriaQuery;
-import jakarta.persistence.criteria.Predicate;
-import jakarta.persistence.criteria.Root;
+import jakarta.persistence.criteria.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -87,6 +84,17 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public Page<Blog> listBlog(String query, Pageable pageable) {
         return blogRepository.findByQuery(query,pageable);
+    }
+
+    @Override
+    public Page<Blog> listBlog(Long tagId, Pageable pageable) {
+        return blogRepository.findAll(new Specification<Blog>() {
+            @Override
+            public Predicate toPredicate(Root<Blog> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
+                Join join = root.join("tags");
+                return criteriaBuilder.equal(join.get("id"),tagId);
+            }
+        },pageable);
     }
 
     @Override
