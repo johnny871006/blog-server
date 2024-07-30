@@ -253,7 +253,9 @@
 <th:block th:replace="_fragments :: script">
 </th:block>
 
-<script>
+
+<script th:inline="javascript">
+
     $('.menu.toggle').click(() => {
         $('.m-item').toggleClass('m-mobile-hide');
     })
@@ -297,10 +299,10 @@
         }
     });
 
-    //進入網頁直接載入留言區，但有問題{id}string無法轉成long，待解決
-    // $(function () {
-    //     $('#comment-container').load("/comments/{id}(id=${blog.id})");
-    // });
+    //一定要記得在script標籤加上 th:inline="javascript"，否則失敗
+    $(function () {
+        $('#comment-container').load(/*[[@{/comments/{id}(id=${blog.id})}]]*/);
+    });
 
     $('#commentPost-btn').click(function () {
         const boolean = $('.ui.form').form('validate form');
