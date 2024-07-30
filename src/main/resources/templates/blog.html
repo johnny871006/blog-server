@@ -199,8 +199,8 @@
             <!--留言框-->
             <div id="comment-form" class="ui form">
                 <label>
-                    <input name="blog.id" th:value="${blog.id}" type="text">
-                    <input name="parentComment.id" value="-1" type="text">
+                    <input name="blog.id" th:value="${blog.id}" type="hidden">
+                    <input name="parentComment.id" value="-1" type="hidden">
                 </label>
                 <div class="field">
                     <label>
