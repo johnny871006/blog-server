@@ -19,94 +19,25 @@
                     <h3 class="ui teal header">歷史檔案</h3>
                 </div>
                 <div class=" right aligned column">
-                    共 <h3 class="ui orange header inline-block"> 14 </h3> 篇
+                    共 <h3 class="ui orange header inline-block" th:text="${blogCount}"> 14 </h3> 篇
                 </div>
             </div>
         </div>
 
         <!--內容-->
-        <h2 class="ui center aligned header">2026</h2>
+        <th:block th:each="item : ${archiveMap}">
+        <h2 class="ui center aligned header" th:text="${item.key}">2024</h2>
         <div class="ui fluid vertical menu">
-            <a href="#" target="_blank" class="item">
+            <a href="#" target="_blank" class="item" th:each="blog : ${item.value}">
                 <span>
                     <i class="mini teal circle icon"></i>
-                    神學、無神論
-                    <div class="ui teal basic left pointing label">7月18號</div>
+                    <span th:text="${blog.title}">神學、無神論</span>
+                    <div class="ui teal basic left pointing label" th:text="${#dates.format(blog.updateTime,'MMMdd')}">7月18號</div>
                 </span>
-                <div class="ui orange basic left pointing label">佛說</div>
-            </a>
-            <a href="#" target="_blank" class="item">
-                <span>
-                    <i class="mini teal circle icon"></i>
-                    神學、無神論
-                    <div class="ui teal basic left pointing label">7月18號</div>
-                </span>
-                <div class="ui orange basic left pointing label">佛說</div>
-            </a>
-            <a href="#" target="_blank" class="item">
-                <span>
-                    <i class="mini teal circle icon"></i>
-                    神學、無神論
-                    <div class="ui teal basic left pointing label">7月18號</div>
-                </span>
-                <div class="ui orange basic left pointing label">佛說</div>
+                <div class="ui orange basic left pointing label" th:text="${blog.flag}">佛說</div>
             </a>
         </div>
-        <h2 class="ui center aligned header">2025</h2>
-        <div class="ui fluid vertical menu">
-            <a href="#" target="_blank" class="item">
-                <span>
-                    <i class="mini teal circle icon"></i>
-                    神學、無神論
-                    <div class="ui teal basic left pointing label">7月18號</div>
-                </span>
-                <div class="ui orange basic left pointing label">佛說</div>
-            </a>
-            <a href="#" target="_blank" class="item">
-                <span>
-                    <i class="mini teal circle icon"></i>
-                    神學、無神論
-                    <div class="ui teal basic left pointing label">7月18號</div>
-                </span>
-                <div class="ui orange basic left pointing label">佛說</div>
-            </a>
-            <a href="#" target="_blank" class="item">
-                <span>
-                    <i class="mini teal circle icon"></i>
-                    神學、無神論
-                    <div class="ui teal basic left pointing label">7月18號</div>
-                </span>
-                <div class="ui orange basic left pointing label">佛說</div>
-            </a>
-        </div>
-        <h2 class="ui center aligned header">2024</h2>
-        <div class="ui fluid vertical menu">
-            <a href="#" target="_blank" class="item">
-                <span>
-                    <i class="mini teal circle icon"></i>
-                    神學、無神論
-                    <div class="ui teal basic left pointing label">7月18號</div>
-                </span>
-                <div class="ui orange basic left pointing label">佛說</div>
-            </a>
-            <a href="#" target="_blank" class="item">
-                <span>
-                    <i class="mini teal circle icon"></i>
-                    神學、無神論
-                    <div class="ui teal basic left pointing label">7月18號</div>
-                </span>
-                <div class="ui orange basic left pointing label">佛說</div>
-            </a>
-            <a href="#" target="_blank" class="item">
-                <span>
-                    <i class="mini teal circle icon"></i>
-                    神學、無神論
-                    <div class="ui teal basic left pointing label">7月18號</div>
-                </span>
-                <div class="ui orange basic left pointing label">佛說</div>
-            </a>
-        </div>
-
+        </th:block>
     </div>
 </div>
 

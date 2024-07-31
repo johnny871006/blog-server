@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
+import java.util.Map;
 
 public interface BlogService {
 
@@ -29,6 +30,12 @@ public interface BlogService {
 
     //有推薦的文章
     List<Blog> listRecommendBlogTop(Integer size);
+
+    //將所有blog存到一個map
+    Map<String,List<Blog>> archiveBlog();
+
+    //搜尋總共有多少Blog
+    Long countBlog();
 
     Blog saveBlog(Blog blog);
 
