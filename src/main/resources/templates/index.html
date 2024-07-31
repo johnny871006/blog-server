@@ -169,17 +169,6 @@
         $('.m-item').toggleClass('m-mobile-hide');
     })
 
-    $("#search-btn").click(function () {
-        $("[name='page']").val(0);
-        loadData();
-    });
-
-    function loadData() {
-        $("#container").load(/*[[@{/admin/blogManage/search}]]*/"/search", {
-            query: $("[name='query']").val(),
-            page: $("[name='page']").val()
-        });
-    }
 </script>
 </body>
 </html>

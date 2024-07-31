@@ -26,7 +26,7 @@
 
         <!--文章-->
         <div class="ui top attached teal segment">
-            <div id="container" class="ui padded vertical segment padding-tb-mid" th:each="blog : ${page.content}">
+            <div class="ui padded vertical segment padding-tb-mid" th:each="blog : ${page.content}">
                 <div class="ui middle aligned mobile reversed stackable grid">
                     <div class="eleven wide column">
                         <h3 class="ui header">
@@ -77,11 +77,11 @@
         <div class="ui bottom attached segment" th:if="${page.totalPages} > 1">
             <div class="ui middle aligned two column grid">
                 <div class="column">
-                    <a href="#" class="ui teal basic mini button" onclick="page(this)" th:attr="data-page=${page.number}-1"
+                    <a href="#" class="ui teal basic mini button"  th:href="@{/(page=${page.number}-1)}"
                        th:unless="${page.first}">上一頁</a>
                 </div>
                 <div class=" right aligned column">
-                    <a href="#" class="ui teal basic mini button" onclick="page(this)" th:attr="data-page=${page.number}+1"
+                    <a href="#" class="ui teal basic mini button"  th:href="@{/(page=${page.number}+1)}"
                        th:unless="${page.last}">下一頁</a>
                 </div>
             </div>
@@ -103,23 +103,6 @@
         $('.m-item').toggleClass('m-mobile-hide');
     })
 
-    //賦值查詢條件，上下頁
-    function page(obj) {
-        $("[name='page']").val($(obj).data("page"));
-        loadData();
-    }
-
-    $("#search-btn").click(function () {
-        $("[name='page']").val(0);
-        loadData();
-    });
-
-    function loadData() {
-        $("#container").load(/*[[@{/admin/blogManage/search}]]*/"/search", {
-            query: $("[name='query']").val(),
-            page: $("[name='page']").val()
-        });
-    }
 </script>
 </body>
 </html>
