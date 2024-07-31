@@ -47,32 +47,36 @@
             </div>
             <div class="three wide column">
                 <h4 class="ui inverted header">New Blog</h4>
-                <div class="ui inverted link list">
-                    <a href="#" class="item">Story</a>
-                    <a href="#" class="item">Practice List</a>
-                    <a href="#" class="item" style="font-size: small">你不一定要很厲害，才能開始；但你要開始，才能很厲害。</a>
+                <div id="newBlog-container">
+                    <div class="ui inverted link list" th:fragment="newBlogList">
+                        <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" class="item" th:each="blog : ${newBlogs}" th:text="${blog.title}">Story</a>
+                    </div>
                 </div>
             </div>
             <div class="three wide column">
                 <h4 class="ui inverted header">Contact Me</h4>
                 <div class="ui inverted link list">
-                    <a href="#" class="item">Email:xxx@gmail.com</a>
-                    <a href="#" class="item">Phone:09xxx</a>
+                    <a href="#" class="item" th:text="#{footer.email}">Email : johnny871006@gmail.com</a>
+                    <a href="#" class="item" th:text="#{footer.phone}">Phone : 0965398206</a>
                 </div>
             </div>
             <div class="seven wide column">
                 <h4 class="ui inverted header">Johnny</h4>
-                <p>這是我的個人部落格，會分享一些事情。</p>
+                <p th:text="#{footer.about1}">這是我的個人部落格，會分享一些事情。</p>
+                <p th:text="#{footer.about2}">你不一定要很厲害，才能開始；但你要開始，才能很厲害。</p>
             </div>
         </div>
         <div class="ui inverted section divider"></div>
-        <p>Copyright ©2024-2024 Johnny Designed by Johnny</p>
+        <p>Copyright ©2024 Designed by Johnny</p>
     </div>
 </footer>
 
 <th:block th:fragment="script">
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.js"></script>
+    <script>
+        $('#newBlog-container').load("/footer/newBlog");
+    </script>
 </th:block>
 
 </body>
