@@ -45,7 +45,7 @@
     <div class="ui container">
         <div class="ui success large message">
             <h3>Hi</h3>
-            <p>Johnny,歡迎登入</p>
+            <p th:text="|${session.user.nickName},歡迎登入|">Johnny,歡迎登入</p>
         </div>
 
         <img src="https://picsum.photos/1000/400" alt="" class="ui rounded bordered fluid image">
