@@ -25,7 +25,7 @@
    
    <img src="https://github.com/johnny871006/blog-server/blob/main/rmImg/adminBlog.png" height="500em" width="850em" />
    
- - 新增或編輯文章
+ - 新增或編輯文章(可依據發佈者選擇是否要顯示作者訊息、留言、按讚、推薦，也可對文章狀態選擇保存草稿或發佈)
    
    <img src="https://github.com/johnny871006/blog-server/blob/main/rmImg/addOrEditBlog.png" height="500em" width="850em" />
    
