@@ -23,13 +23,15 @@
                     <div class="ui header">關於我</div>
                 </div>
                 <div class="ui attached segment">
-                    <p class="text-thin">Lorem ipsum dolor sit amet.</p>
-                    <p class="text-thin">Lorem ipsum dolor sit amet.</p>
+                    <p class="text-thin" th:text="#{about}">Lorem ipsum dolor sit amet.</p>
                 </div>
                 <div class="ui attached segment">
-                    <div class="ui orange basic left pointing label">狗狗</div>
-                    <div class="ui orange basic left pointing label">貓貓</div>
-                    <div class="ui orange basic left pointing label">鼠鼠</div>
+                    <div class="ui orange basic left pointing label margin-tb">狗狗</div>
+                    <div class="ui orange basic left pointing label margin-tb">貓貓</div>
+                    <div class="ui orange basic left pointing label margin-tb">鼠鼠</div>
+                    <div class="ui orange basic left pointing label margin-tb">電動</div>
+                    <div class="ui orange basic left pointing label margin-tb">出去玩</div>
+                    <div class="ui orange basic left pointing label margin-tb">...</div>
                 </div>
                 <div class="ui attached segment">
                     <div class="ui teal basic left pointing label margin-tb">Java</div>
@@ -41,10 +43,10 @@
                     <div class="ui teal basic left pointing label margin-tb">...</div>
                 </div>
                 <div class="ui attached bottom segment">
-                    <a href="#" class="ui circular icon button"><i class="github icon"></i></a>
-                    <a href="#" class="ui phone circular icon button" data-content="0965398206" data-position="bottom center"><i class="whatsapp icon"></i></a>
-                    <a href="#" class="ui twitter circular icon button" data-content="johnny" data-position="bottom center" ><i class="twitter icon"></i></a>
-                    <a href="#" class="ui youtube circular icon button" data-content="johnny" data-position="bottom center"><i class="youtube icon"></i></a>
+                    <a href="#" th:href="@{https://github.com/johnny871006/blog-server.git}" class="ui circular github icon button" data-content="https://github.com/johnny871006/blog-server.git" data-position="bottom center"><i class="github icon"></i></a>
+                    <a href="#" class="ui phone circular icon button" data-content="Phone : 0965398206" data-position="bottom center"><i class="whatsapp icon"></i></a>
+                    <a href="#" class="ui linechat circular icon button" data-content="LineID : johnny871006" data-position="bottom center" ><i class="linechat icon"></i></a>
+                    <a href="#" class="ui google circular icon button" data-content="Email : johnny871006@gmail.com" data-position="bottom center" ><i class="google icon"></i></a>
                 </div>
             </div>
         </div>
@@ -64,8 +66,9 @@
     })
 
     $('.phone').popup();
-    $('.twitter').popup();
-    $('.youtube').popup();
+    $('.linechat').popup();
+    $('.github').popup();
+    $('.google').popup();
 </script>
 </body>
 </html>
