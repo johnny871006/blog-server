@@ -27,7 +27,7 @@
    
  - 新增或編輯文章
    
-   <img src="https://github.com/johnny871006/blog-server/blob/main/rmImg/addOrEditnBlog.png" height="500em" width="850em" />
+   <img src="https://github.com/johnny871006/blog-server/blob/main/rmImg/addOrEditBlog.png" height="500em" width="850em" />
    
  - 分類列表 (可列出新增過的分類)
    
