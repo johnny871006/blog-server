@@ -1,11 +1,8 @@
 package com.johnny.blogserver.web;
 
-import com.johnny.blogserver.dto.BlogQuery;
 import com.johnny.blogserver.model.Tag;
-import com.johnny.blogserver.model.Type;
 import com.johnny.blogserver.service.BlogService;
 import com.johnny.blogserver.service.TagService;
-import com.johnny.blogserver.service.TypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -26,6 +23,7 @@ public class TagShowController {
     @Autowired
     private BlogService blogService;
 
+    //顯示標籤列表
     @GetMapping("/tags/{id}")
     public String types(@PathVariable Long id,
                         @PageableDefault(size = 8,sort = {"updateTime"},direction = Sort.Direction.DESC) Pageable pageable,

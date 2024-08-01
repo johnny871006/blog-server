@@ -24,6 +24,7 @@ public class TypeShowController {
     @Autowired
     private BlogService blogService;
 
+    //顯示分類列表
     @GetMapping("/types/{id}")
     public String types(@PathVariable Long id,
                         @PageableDefault(size = 8,sort = {"updateTime"},direction = Sort.Direction.DESC)Pageable pageable,

@@ -23,6 +23,7 @@ public class TypeController {
     @Autowired
     private TypeService typeService;
 
+    //查看分類管理頁面的分類列表
     @GetMapping("/types")
     public String types(@PageableDefault(size = 5, sort = {"id"}, direction = Sort.Direction.DESC)
                         Pageable pageable,
@@ -33,6 +34,7 @@ public class TypeController {
         return "admin/types";
     }
 
+    //進入新增頁面
     @GetMapping("/types/input")
     public String input(Model model) {
 
@@ -40,12 +42,15 @@ public class TypeController {
         return "admin/typeInput";
     }
 
+
+    //進入編輯頁面
     @GetMapping("/types/{id}/input")
     public String editInput(@PathVariable Long id, Model model){
         model.addAttribute("type", typeService.getType(id));
         return "admin/typeInput";
     }
 
+    //新增或編輯，並返回分類列表
     @PostMapping("/types")
     public String post(@Valid Type type, BindingResult bindingResult, RedirectAttributes attributes) {
 

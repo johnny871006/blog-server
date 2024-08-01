@@ -12,6 +12,7 @@ public class ArchiveShowController {
     @Autowired
     private BlogService blogService;
 
+    //進入歷史文章頁面
     @GetMapping("/archives")
     public String archives(Model model){
 

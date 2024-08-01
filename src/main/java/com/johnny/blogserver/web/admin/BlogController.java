@@ -36,6 +36,7 @@ public class BlogController {
     @Autowired
     private TagService tagService;
 
+    //查看blogManage頁面的文章列表
     @GetMapping("/blogManage")
     public String blogs(@PageableDefault(size = 3, sort = {"updateTime"}, direction = Sort.Direction.DESC) Pageable pageable,
                         BlogQuery blog,
@@ -46,6 +47,7 @@ public class BlogController {
         return LIST;
     }
 
+    //查看依據搜尋條件的blogManage頁面的文章列表
     @PostMapping("/blogManage/search")
     public String search(@PageableDefault(size = 3, sort = {"updateTime"}, direction = Sort.Direction.DESC) Pageable pageable,
                          BlogQuery blog,
@@ -57,6 +59,7 @@ public class BlogController {
         return "admin/blogManage :: blogList";
     }
 
+    //進入新增文章頁面
     @GetMapping("/blogManage/input")
     public String input(Model model) {
         setTypeAndTag(model);
@@ -64,6 +67,7 @@ public class BlogController {
         return INPUT;
     }
 
+    //進入編輯文章
     @GetMapping("/blogManage/{id}/input")
     public String editInput(@PathVariable Long id,
                             Model model) {
@@ -74,6 +78,7 @@ public class BlogController {
         return INPUT;
     }
 
+    //新增或編輯文章，並返回文章列表
     @PostMapping("/blogManage")
     public String post(Blog blog,
                        RedirectAttributes redirectAttributes,

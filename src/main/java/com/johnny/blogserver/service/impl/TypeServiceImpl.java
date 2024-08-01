@@ -1,10 +1,8 @@
 package com.johnny.blogserver.service.impl;
 
-import com.johnny.blogserver.NotFoundException;
 import com.johnny.blogserver.dao.TypeRepository;
 import com.johnny.blogserver.model.Type;
 import com.johnny.blogserver.service.TypeService;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;

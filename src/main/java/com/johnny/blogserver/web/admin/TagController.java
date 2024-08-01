@@ -23,6 +23,7 @@ public class TagController {
     @Autowired
     private TagService tagService;
 
+    //查看標籤管理頁面的標籤列表
     @GetMapping("/tags")
     public String tags(@PageableDefault(size = 5, sort = {"id"}, direction = Sort.Direction.DESC)
                         Pageable pageable,
@@ -33,6 +34,7 @@ public class TagController {
         return "admin/tags";
     }
 
+    //進入新增頁面
     @GetMapping("/tags/input")
     public String input(Model model) {
 
@@ -40,12 +42,14 @@ public class TagController {
         return "admin/tagInput";
     }
 
+    //進入編輯頁面
     @GetMapping("/tags/{id}/input")
     public String editInput(@PathVariable Long id, Model model){
         model.addAttribute("tag", tagService.getTag(id));
         return "admin/tagInput";
     }
 
+    //新增或編輯，並返回標籤列表
     @PostMapping("/tags")
     public String post(@Valid Tag tag, BindingResult bindingResult, RedirectAttributes attributes) {
 

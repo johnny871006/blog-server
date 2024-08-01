@@ -26,6 +26,7 @@ public class IndexController {
     @Autowired
     private TagService tagService;
 
+    //首頁文章列表
     @GetMapping("/")
     public String index(@PageableDefault(size = 5, sort = {"updateTime"}, direction = Sort.Direction.DESC) Pageable pageable,
                         Model model) {
@@ -38,6 +39,7 @@ public class IndexController {
         return "index";
     }
 
+    //搜尋文章列表
     @PostMapping("/search")
     public String search(@PageableDefault(size = 8, sort = {"updateTime"}, direction = Sort.Direction.DESC) Pageable pageable,
                          @RequestParam String query, Model model) {
@@ -48,6 +50,7 @@ public class IndexController {
         return "search";
     }
 
+    //進入文章詳情頁
     @GetMapping("/blog/{id}")
     public String blog(@PathVariable Long id,Model model) {
 
@@ -58,6 +61,7 @@ public class IndexController {
         return "blog";
     }
 
+    //進入關於我
     @GetMapping("/about")
     public String about() {
 
