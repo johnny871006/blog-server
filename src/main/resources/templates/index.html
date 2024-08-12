@@ -106,7 +106,7 @@
                     </div>
                     <div class="ui teal segment ">
                         <div class="ui fluid vertical menu" >
-                            <a href="#" class="item" th:each="type : ${types}">
+                            <a href="#" th:href="@{/types/{id}(id=${type.id})}" class="item" th:each="type : ${types}">
                                 <span th:text="${type.name}">學習輪迴</span>
 <!--                                th語法#arrays.length可拿到list長度-->
                                 <div class="ui teal basic left pointing label" th:text="${#arrays.length(type.blogs)}">66</div>
@@ -131,7 +131,7 @@
                         </div>
                     </div>
                     <div class="ui segment teal">
-                        <a href="#" target="_blank" class="ui teal basic left pointing label margin-tb" th:each="tag : ${tags}">
+                        <a href="#" class="ui teal basic left pointing label margin-tb" th:href="@{/tags/{id}(id=${tag.id})}" th:each="tag : ${tags}">
                             <span th:text="${tag.name}">方法</span>
                             <div class="detail" th:text="${#arrays.length(tag.blogs)}">22</div>
                         </a>
